@@ -1,0 +1,235 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    /* background-color: #E9ECEF; */
+    background-color:#f2f2f2;
+
+}
+
+/* jumbotron */
+
+.jumbotron{
+    /* background-color: #E2E6EA; */
+    background-color:#F7F7F7 ;
+    height:100vh;
+    /* padding:0; */
+
+    /* padding-top:0px; */
+    /* padding-top: 0px; */
+ 
+
+}
+.jumbo-cont{
+    margin-top:29vh;
+}
+
+
+/* navbar */
+.navbar{
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    /* background-color: #E2E6EA; */
+    background-color:#f7f7f7;
+}
+.nav-font{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* site */
+/* #site{
+    font-family: 'Roboto', sans-serif;
+} */
+
+#company-name{
+    /* position: absolute;  */
+     /* left:-15px; */
+    /* top:15px; */
+    padding-top:40px;
+    font-family: 'Poppins', sans-serif;
+    
+    font-size: 45px;
+    font-weight: 500;
+   
+    
+}
+/* @media(min-width:700){
+    .short-desc{
+        font-size: 20px;
+        position: absolute; 
+         left:272px;
+      
+        top:280px; 
+      font-family: 'Lato',sans-serif;
+
+    }
+} */
+.short-desc{
+
+
+    font-size: 20px;
+    position: absolute; 
+     
+  
+    top:160px; 
+  font-family: 'Lato',sans-serif;
+}
+
+.col-lg-5 img{
+     object-fit: cover;
+  
+  /* Ensure the image fills the container */
+  width: 100%;
+  height: 100%;
+}
+
+p{
+    padding-right: 5px;
+}
+#me-jpg{
+    width: 250px;
+  height: 250px;
+  
+  /* Create the circular shape */
+  border-radius: 70%;
+  
+  /* This is the key to cropping the large image */
+  overflow: hidden;
+}
+.NOW{
+    margin-top: 70px;
+    font-family:'Lato',sans-serif ;
+    font-size: 20px;
+}
+.lead-hint{
+    font-family: 'Montserrat';
+}
+.section-heading{
+    font-family: 'Montserrat', sans-serif;
+    /* font-weight: lighter; */
+    letter-spacing: 15px;
+    font-size: 32px;
+    color:black;
+    font-weight: 200;
+
+}
+.section{
+    width:100%;
+    margin-top: 150px;
+}
+.section-int{
+    margin-top: 50px;
+}
+.badge{
+    /* color: grey; */
+    font-family: 'Lato';
+    font-weight: 200;
+
+}
+.exp{
+    margin: 20px;
+}
+
+
+.badge {
+    margin: 30px 2px 2px 2px;
+    font-weight: 100;
+    color: grey;
+    height: 1.5rem;
+    width: 5rem;
+    font-size: 1rem;
+    text-align: center;
+}
+.card-head{
+    
+    font-family: 'Montserrat';
+    font-weight: 500;
+}
+.card-body{
+    padding-top:20px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 18px;
+}
+.card{
+    margin-top:30px;
+    /* margin-left:30px; */
+
+    border-radius: 0;
+    border-bottom: none;
+    height: 300px;
+
+    background-color: #F2F2F2;
+    padding:20px;
+    z-index: -1;
+}
+
+.row
+{
+    margin-top: 50px;
+}
+.jumbotron-filled{
+    /* width:100%; */
+    background-color: #E2E6EA;
+    height:45vh;
+    margin-bottom: 0;
+}
+
+.heavy-text{
+    font-family: 'Poppins',sans-serif;
+    /* margin-left: auto; */
+  
+    font-size: 50px;
+    padding-top: 0px;
+}
+.email-text{
+    font-family: 'Poppins',sans-serif;
+
+  
+    font-size: 18px;
+    text-decoration: underline;
+
+}
+.project-link{
+    color:black;
+    
+}
+
+
+.bton{
+    
+    background-color: #F2F2F2;
+    font-family: 'Montserrat',sans-serif;
+    text-decoration:unset;
+    color:black;
+   
+}
+.bton:hover{
+    color: #0078D6;
+    text-decoration: none;
+}
+.butn{
+    /* margin-left: 30px; */
+    border-width: 1px;
+    border-style: solid;
+    border-color: #D4D4D4;
+    margin-top:-1px;
+    border-radius: 0;
+    width: auto;
+}
+.display-4 {
+    font-family: 'Montserrat';
+    font-weight: 500;
+    text-align: center;
+    font-size: 35px;
+    
+    line-height: 1.2;
+   }
+.jumbo-txt {
+    /* text-align: left; */
+}
+.card-ed{
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
