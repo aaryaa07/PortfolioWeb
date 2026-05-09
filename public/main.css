@@ -1084,7 +1084,7 @@ a {
 
 .utd-header {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
@@ -1096,15 +1096,16 @@ a {
 .utd-school-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .utd-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 7px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   object-fit: cover;
   display: block;
+  flex-shrink: 0;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07);
 }
 
@@ -1114,7 +1115,7 @@ a {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-lt);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .utd-school {
@@ -1223,17 +1224,20 @@ a {
 ═══════════════════════════════════════════════════ */
 .chat-root {
   position: fixed;
-  right: 15px;
-  bottom: 15px;
+  right: 20px;
+  bottom: 20px;
+  width: 58px;
+  height: 58px;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 /* ── FAB ── */
 .chat-fab {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  position: relative;
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -1288,10 +1292,13 @@ a {
 
 /* ── Panel ── */
 .chat-panel {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
   width: 360px;
   max-width: calc(100vw - 32px);
   height: 540px;
-  max-height: calc(100vh - 44px);
+  max-height: calc(100vh - 100px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -1573,11 +1580,15 @@ a {
   .chat-root {
     right: 16px;
     bottom: 16px;
+    width: 52px;
+    height: 52px;
   }
 
   .chat-panel {
     width: calc(100vw - 32px);
-    height: calc(100vh - 90px);
+    height: calc(100vh - 110px);
+    right: 0;
+    bottom: calc(100% + 12px);
   }
 
   .chat-fab {
