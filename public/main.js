@@ -23,12 +23,21 @@ let idx = 0;
 /* ── Smooth scroll: nav links scroll the main panel on desktop ── */
 const mainEl   = document.getElementById('main-scroll');
 const navLinks = document.querySelectorAll('.nav-link');
+let ignoreObserver = false;
 
 navLinks.forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     const target = document.querySelector(link.getAttribute('href'));
     if (!target) return;
+
+    navLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+
+    ignoreObserver = true;
+    window.setTimeout(() => {
+      ignoreObserver = false;
+    }, 500);
 
     /* On mobile the body scrolls; on desktop `.main` scrolls */
     if (window.innerWidth > 900) {
@@ -46,32 +55,46 @@ function getScrollRoot() {
   return window.innerWidth > 900 ? mainEl : null; /* null = viewport */
 }
 
-function buildObserver() {
+function updateActiveSection() {
+  if (ignoreObserver) return;
+
   const root = getScrollRoot();
-  return new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
-      }
-    });
-  }, {
-    root,
-    threshold: 0.35,
-    rootMargin: '-10% 0px -40% 0px',
+  const scrollTop = root ? root.scrollTop : window.scrollY;
+  const offset = 100;
+  let activeId = sections[0]?.id;
+
+  sections.forEach(section => {
+    const sectionTop = root ? section.offsetTop : section.getBoundingClientRect().top + scrollTop;
+    if (sectionTop <= scrollTop + offset) {
+      activeId = section.id;
+    }
   });
+
+  navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === activeId));
 }
 
-let observer = buildObserver();
-sections.forEach(s => observer.observe(s));
+function attachScrollListener() {
+  const root = getScrollRoot();
+  const target = root || window;
+  target.addEventListener('scroll', updateActiveSection);
+}
 
-/* Rebuild observer if layout switches between desktop / mobile */
+function detachScrollListener() {
+  const root = getScrollRoot();
+  const target = root || window;
+  target.removeEventListener('scroll', updateActiveSection);
+}
+
 let prevWidth = window.innerWidth;
+attachScrollListener();
+updateActiveSection();
+
 window.addEventListener('resize', () => {
-  if ((window.innerWidth > 900) !== (prevWidth > 900)) {
-    observer.disconnect();
-    observer = buildObserver();
-    sections.forEach(s => observer.observe(s));
-    prevWidth = window.innerWidth;
+  const currentWidth = window.innerWidth;
+  if ((currentWidth > 900) !== (prevWidth > 900)) {
+    detachScrollListener();
+    attachScrollListener();
+    prevWidth = currentWidth;
+    updateActiveSection();
   }
 });
