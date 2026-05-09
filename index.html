@@ -2,441 +2,448 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
-
-
-    <script src="https://use.fontawesome.com/0decee163c.js"></script>
-
-    <script src="https://use.fontawesome.com/07777d63cf.js"></script>
-
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Poppins:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="public/main.css">
-    <title>Aryaman Singh</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryaman Singh | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://use.fontawesome.com/0decee163c.js"></script>
+  <link rel="stylesheet" href="public/main.css">
 </head>
 
-<body onload="startTypo()">
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-font">
+<body>
+  <div class="layout">
 
+    <!-- ── SIDEBAR ───────────────────────────────── -->
+    <aside class="sidebar">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <div class="profile">
+        <div class="avatar-wrap">
+          <img src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh" class="avatar">
+        </div>
+        <span class="name" id="typed-name"></span>
+        <span class="tagline">Full-Stack &amp; Data Engineer</span>
+        <span class="school">MS IT &amp; Management · UT Dallas<br>Business Analytics &amp; Data Mining</span>
+        <div class="avail-badge">
+          <span class="dot"></span>Open to opportunities
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#about" class="nav-link active" data-section="about">
+          <span class="nav-num">01</span>About
+        </a>
+        <a href="#skills" class="nav-link" data-section="skills">
+          <span class="nav-num">02</span>Skills
+        </a>
+        <a href="#projects" class="nav-link" data-section="projects">
+          <span class="nav-num">03</span>Projects
+        </a>
+        <a href="#courses" class="nav-link" data-section="courses">
+          <span class="nav-num">04</span>Courses
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="social">
+          <a href="mailto:as.aryamansingh@gmail.com" class="social-icon" title="Email">
+            <i class="fa fa-envelope-o"></i>
+          </a>
+          <a href="https://github.com/aaryaa07" class="social-icon" title="GitHub" target="_blank" rel="noopener">
+            <i class="fa fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/as-aryamansingh" class="social-icon" title="LinkedIn" target="_blank"
+            rel="noopener">
+            <i class="fa fa-linkedin"></i>
+          </a>
+        </div>
+        <span class="copyright">© 2026 Aryaman Singh</span>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ──────────────────────────── -->
+    <main class="main" id="main-scroll">
+
+      <!-- 01 · ABOUT -->
+      <section id="about" class="section section-hero">
+        <div class="hero-content">
+          <div class="eyebrow">01 · About</div>
+          <h1 class="hero-title">
+            Building things<br>people <span class="accent-text">actually use.</span>
+          </h1>
+          <p class="hero-body">
+            Software engineer with 3 years of experience at Citrix. I build full-stack
+            applications and data-driven products, with a sharp focus on clean code, fast
+            delivery, and real business impact.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">See my work</a>
+            <a href="mailto:as.aryamansingh@gmail.com" class="btn-ghost">Let's talk &rarr;</a>
+          </div>
+        </div>
+
+        <aside class="hero-aside">
+          <div class="badge-panel">
+            <div class="badge-panel-head">
+              <span class="badge-panel-label">Verified Credentials</span>
+              <span class="badge-panel-dot"></span>
+            </div>
+            <a class="badge-tile badge-tile-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank"
+              rel="noopener"
+              title="Beta Gamma Sigma (BGS) recognizes and honors the top 10% of undergraduate students, top 20% of graduate students, and all doctoral candidates from business schools worldwide accredited by The Association to Advance Collegiate Schools of Business (AACSB).">
+              <img src="public/badge-bgs.png" alt="Beta Gamma Sigma | Lifetime Member" loading="lazy">
+              <div class="badge-tile-meta">
+                <span class="badge-tile-name">Beta Gamma Sigma <span class="bgs-acro">(BGS)</span></span>
+                <span class="badge-tile-sub">Business Honor Society · Lifetime Member</span>
+              </div>
+            </a>
+
+            <div class="credly-row">
+              <a class="badge-tile" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988"
+                target="_blank" rel="noopener" title="Google AI Professional Certificate | verify on Credly">
+                <img src="public/badge-google-ai.png" alt="Google AI Professional Certificate" loading="lazy">
+                <span class="badge-tile-name">Google · AI Professional</span>
+              </a>
+              <a class="badge-tile" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb"
+                target="_blank" rel="noopener" title="Alteryx Designer Cloud Core | verify on Credly">
+                <img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core Certified" loading="lazy">
+                <span class="badge-tile-name">Alteryx · Designer Cloud Core</span>
+              </a>
+            </div>
+            <div class="badge-panel-foot">Business · Tech · Verifiable</div>
+          </div>
+        </aside>
+
+        <!-- "Now" — quick look at current build -->
+        <a class="now-card" href="#projects" aria-label="Currently building Touchline AI">
+          <div class="now-head">
+            <span class="now-pulse"></span>
+            <span class="now-label">NOW</span>
+            <span class="now-title">Currently building <strong>Touchline AI</strong></span>
+          </div>
+          <div class="now-video-wrap">
+            <video id="now-video" class="now-video" autoplay muted loop playsinline preload="metadata">
+              <source src="public/now-demo.mov" type="video/quicktime">
+              <source src="public/now-demo.mov" type="video/mp4">
+            </video>
+          </div>
+        </a>
+      </section>
+
+      <!-- 02 · SKILLS -->
+      <section id="skills" class="section">
+        <div class="eyebrow">02 · Skills</div>
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="skills-grid">
+          <div class="skill-col">
+            <div class="skill-cat">Software Dev</div>
+            <div class="skill-tags">
+              <span class="tag">C++</span>
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <div class="skill-cat">Frontend</div>
+            <div class="skill-tags">
+              <span class="tag">ReactJS</span>
+              <span class="tag">Flutter</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <div class="skill-cat">Backend</div>
+            <div class="skill-tags">
+              <span class="tag">NodeJS</span>
+              <span class="tag">ExpressJS</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <div class="skill-cat">Testing</div>
+            <div class="skill-tags">
+              <span class="tag">Jest</span>
+              <span class="tag">Cypress</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <div class="skill-cat">Tools</div>
+            <div class="skill-tags">
+              <span class="tag">Git</span>
+              <span class="tag">Jira</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · PROJECTS -->
+      <section id="projects" class="section">
+        <div class="eyebrow">03 · Projects</div>
+        <h2 class="section-title">Selected Work</h2>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-header">
+              <i class="fa fa-telegram project-icon"></i>
+              <span class="collab-tag">Team Project</span>
+            </div>
+            <h3 class="project-name">AdOptimize</h3>
+            <p class="project-desc">Cross-platform ad optimization concept targeting a 35% reduction in ad budget
+              wastage for SMBs, complete with product roadmap, competitor analysis, and data-backed KPIs.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="ptag">Strategy</span>
+                <span class="ptag">Analytics</span>
+                <span class="ptag">Product</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <i class="fa fa-cogs project-icon"></i>
+              <span class="collab-tag collab-tag-nda"><i class="fa fa-lock"></i> NDA Project</span>
+            </div>
+            <h3 class="project-name">CAMA <span class="project-sub">— Comprehensive Automated Modernization
+                Assessment</span></h3>
+            <p class="project-desc">AI-powered platform with 11 CrewAI agents that automates application modernization
+              assessments across People, Process, Technology, and Business Value. Generates 7Rs rationalization
+              scorecards, cost projections, and risk assessments, with a conversational GenAI interface that lets the
+              C-suite drill into any report component, cutting evaluation time from weeks to hours.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="ptag">React</span>
+                <span class="ptag">Flask</span>
+                <span class="ptag">MongoDB</span>
+                <span class="ptag">CrewAI</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <i class="fa fa-futbol-o project-icon"></i>
+              <div class="project-link-group">
+                <a href="https://touchline-erff.onrender.com/" class="gh-btn gh-btn-live" target="_blank"
+                  rel="noopener">
+                  <i class="fa fa-external-link"></i> Live
+                </a>
+                <a href="https://github.com/aaryaa07/Touchline" class="gh-btn" target="_blank" rel="noopener">
+                  <i class="fa fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+            <h3 class="project-name">Touchline AI</h3>
+            <p class="project-desc">AI assistant for football fans - helps newcomers choose a club to support, and gives
+              existing fans quick, personalised updates on their favourite or rival clubs. Live at
+              touchline-erff.onrender.com.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="ptag">AI</span>
+                <span class="ptag">Web</span>
+                <span class="ptag">Sports Data</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-header">
+              <i class="fa fa-android project-icon"></i>
+              <div class="project-link-group">
+                <a href="https://github.com/aaryaa07/wlf-app" class="gh-btn" target="_blank" rel="noopener">
+                  <i class="fa fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+            <h3 class="project-name">Whatup' Life Foundation</h3>
+            <p class="project-desc">Mental wellbeing mobile app featuring a blog platform, session scheduling,
+              one-to-one peer support, and personalised push notifications.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="ptag">Flutter</span>
+                <span class="ptag">Dart</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 · EDUCATION & CERTIFICATIONS -->
+      <section id="courses" class="section">
+        <div class="eyebrow">04 · Education</div>
+        <h2 class="section-title">Education &amp; Certifications</h2>
+
+        <!-- Featured certifications -->
+        <div class="cert-row">
+
+          <a class="cert-featured" data-brand="google" href="public/GoogleAIProfessional.pdf" target="_blank"
+            rel="noopener">
+            <div class="cert-head">
+              <div class="cert-logo cert-logo-img" aria-hidden="true">
+                <img src="public/logo-google.png" alt="" loading="lazy">
+              </div>
+              <div class="cert-meta">
+                <div class="cert-issuer">Coursera · Google</div>
+                <div class="cert-date">Issued May 2026</div>
+              </div>
+              <span class="cert-badge">Professional Certificate</span>
+            </div>
+            <h3 class="cert-title">Google AI Professional Certificate</h3>
+            <p class="cert-desc">Fluent in applying AI to brainstorming, research, communication, content creation, data
+              analysis, and coding — built 20+ AI-powered artefacts and a custom vibe-coded AI solution.</p>
+            <div class="cert-courses">
+              <span class="course-pill">AI Fundamentals</span>
+              <span class="course-pill">Brainstorming &amp; Planning</span>
+              <span class="course-pill">Research &amp; Insights</span>
+              <span class="course-pill">Writing &amp; Communicating</span>
+              <span class="course-pill">Content Creation</span>
+              <span class="course-pill">Data Analysis</span>
+              <span class="course-pill">App Building</span>
+            </div>
+            <span class="cert-cta">View certificate <i class="fa fa-external-link"></i></span>
+          </a>
+
+          <a class="cert-featured" data-brand="alteryx" href="public/Alteryx_Designer_Cloud_Core.pdf" target="_blank"
+            rel="noopener">
+            <div class="cert-head">
+              <div class="cert-logo cert-logo-img" aria-hidden="true">
+                <img src="public/logo-alteryx.png" alt="" loading="lazy">
+              </div>
+              <div class="cert-meta">
+                <div class="cert-issuer">Alteryx</div>
+                <div class="cert-date">Issued Dec 2025</div>
+              </div>
+              <span class="cert-badge">Core Badge</span>
+            </div>
+            <h3 class="cert-title">Alteryx Designer Cloud Core</h3>
+            <p class="cert-desc">Foundational mastery of Alteryx Designer Cloud: blending data sources, building
+              automated analytic workflows, and producing repeatable insights at scale.</p>
+            <div class="cert-courses">
+              <span class="course-pill">Workflow Design</span>
+              <span class="course-pill">Data Prep &amp; Blending</span>
+              <span class="course-pill">Cloud Analytics</span>
+              <span class="course-pill">Automation</span>
+            </div>
+            <span class="cert-cta">View certificate <i class="fa fa-external-link"></i></span>
+          </a>
+
+        </div>
+
+        <!-- UTD Coursework -->
+        <div class="utd-block">
+          <div class="utd-header">
+            <div>
+              <div class="utd-eyebrow">MS · IT &amp; Management</div>
+              <h3 class="utd-school">The University of Texas at Dallas</h3>
+            </div>
+            <span class="utd-tag">Business Analytics &amp; Data Mining</span>
+          </div>
+
+          <div class="utd-grid">
+            <div class="utd-card">
+              <span class="utd-code">OPRE 6359</span>
+              <span class="utd-name">Advanced Statistics for Data Science</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6346</span>
+              <span class="utd-name">Big Data</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6326</span>
+              <span class="utd-name">Data Management</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6349</span>
+              <span class="utd-name">Digital Consulting Project</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6393</span>
+              <span class="utd-name">Foundations of Digital Product Management</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">OB 6332</span>
+              <span class="utd-name">Negotiation &amp; Dispute Resolution</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6382</span>
+              <span class="utd-name">Object Oriented Programming in Python</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6385</span>
+              <span class="utd-name">Robotic Process Automation</span>
+            </div>
+            <div class="utd-card">
+              <span class="utd-code">MIS 6308</span>
+              <span class="utd-name">System Analysis &amp; Project Management</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER / CONTACT -->
+      <footer class="contact-footer">
+        <div class="footer-inner">
+          <p class="footer-quote">"Always interested to hear and work on ideas."</p>
+          <a href="mailto:as.aryamansingh@gmail.com" class="footer-email">as.aryamansingh@gmail.com</a>
+          <div class="footer-socials">
+            <a href="mailto:as.aryamansingh@gmail.com" class="social-icon" title="Email">
+              <i class="fa fa-envelope-o"></i>
+            </a>
+            <a href="https://github.com/aaryaa07" class="social-icon" title="GitHub" target="_blank" rel="noopener">
+              <i class="fa fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/as-aryamansingh" class="social-icon" title="LinkedIn" target="_blank"
+              rel="noopener">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Floating "Ask about Aryaman" chatbot — fully static, knowledge-base driven -->
+  <div id="chat-root" class="chat-root">
+    <button id="chat-fab" class="chat-fab" aria-label="Ask about Aryaman" type="button">
+      <i class="fa fa-comments"></i>
+      <span class="chat-fab-pulse"></span>
+    </button>
+
+    <div id="chat-panel" class="chat-panel" role="dialog" aria-label="Ask about Aryaman" hidden>
+      <header class="chat-head">
+        <div class="chat-head-avatar">
+          <img src="public/AryamanSinghLinkedInProfilePic.PNG" alt="">
+        </div>
+        <div class="chat-head-meta">
+          <div class="chat-head-name">Ask about Aryaman</div>
+          <div class="chat-head-status"><span class="dot"></span>Bot · Trained on resume + portfolio</div>
+        </div>
+        <button id="chat-close" class="chat-close" aria-label="Close chat" type="button">
+          <i class="fa fa-times"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="#projects">PROJECTS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#courses">COURSES</a>
-                </li>
+      </header>
 
-            </ul>
-        </div>
-    </nav>
-    <!-- site -->
+      <div id="chat-log" class="chat-log" aria-live="polite"></div>
 
-    <!-- jumbotron -->
-    <div class="jumbotron">
-        <div class="container jumbo-cont text-center">
-            <div class="row text-center">
+      <div id="chat-suggestions" class="chat-suggestions"></div>
 
-                <div class="col-sm-12 col-md-12 col-lg-5 ">
-                    <img src="public/AryamanSinghLinkedInProfilePic.PNG" alt="My Picture" id="me-jpg">
-
-                </div>
-            
-                <div class=" col-sm-2 col-md-12 col-lg-4" class="short-desc">
-
-                    <span id="company-name" ></span>
-
-<div class="row text-center">
-    <div class="col-md-4 col-lg-7"></div>
-    <div class="col-sm-12 col-md-12 col-lg-12 text-center short-desc">
-        <span class="text-center ">
-            MS in IT and Management at UT Dallas
-        (Business Analytics and Data Mining)
-
-            
-        </span>
-
+      <form id="chat-form" class="chat-form" autocomplete="off">
+        <input id="chat-input" class="chat-input" type="text" placeholder="Ask anything about Aryaman…" maxlength="200"
+          required>
+        <button class="chat-send" aria-label="Send" type="submit">
+          <i class="fa fa-paper-plane"></i>
+        </button>
+      </form>
     </div>
-    <div class="col-md-4 col-lg-4"></div>
-</div>
+  </div>
 
-                   
-                </div>
-              
-
-            </div>
-        </div>
-    </div>
-    <!-- testing aos -->
-    <!-- <div style=" height:60vh;" >
-           <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6 " >
-                <div class="card NOW ">
-        
-                    <div class="card-body">
-                        <em><strong class="card-head"> NOW</strong></em>
-            
-            
-                        <p class="p-text">  Hey guys, I am Aryaman Singh, majoring in Computer and Communication Engineering at Manipal Institute Of Technology, Manipal. Web development and App development are the two fields
-                            I constantly try to improve myself at. Alongside Development, I am also exploring Competitive Programming
-                            at the moment.
-                            If there is something called a sports freak, then that's a title I would like to cling onto.
-                            Football and Basketball to top them all. I am a full time music enthusiast as well, song writing
-                            is something I find extremely fascinating and I try to put out my stories through that art
-                            form.
-                        </p>
-                    </div>
-                </div>
-    
-            </div>
-            <div class="col-lg-3"></div>
-           </div>
-
-        </div> -->
-
-    <!-- tech literacy -->
-    <div class="container section text-center" data-aos="fade" data-aos-duration="1700">
-        <h4 class="section-heading">TECH LITERACY</h4><br>
-        <div class="exp">
-            <strong class="card-head text-left">Software Development</strong><br>
-            <span class="badge badge-light">c++</span>
-            <span class="badge badge-light">python</span>
-
-
-            <span class="badge badge-light">javascript</span>
-        </div>
-        <div class="exp">
-            <strong class="card-head ">Frontend</strong><br>
-            <!-- <span class="badge badge-light">HTML</span>
-            <span class="badge badge-light">CSS</span>
-            <span class="badge badge-light">JS</span> -->
-            <span class="badge badge-light">ReactJS</span>
-            
-            <span class="badge badge-light">Flutter</span>
-
-
-        </div>
-        <div class="exp">
-            <strong class="card-head">Backend</strong><br>
-            <span class="badge badge-light"> NodeJS</span>
-            <span class="badge badge-light"> ExpressJS</span>
-            <span class="badge badge-light"> MongoDB</span>
-            <span class="badge badge-light"> SQL</span>
-
-        </div>
-        <div class="exp">
-            <strong class="card-head">Testing and Automation</strong><br>
-            <span class="badge badge-light"> Jest</span>
-            <span class="badge badge-light"> Cypress</span>
-
-        </div>
-         <div class="exp">
-            <strong class="card-head">Tools</strong><br>
-            <span class="badge badge-light">  Git</span>
-            <span class="badge badge-light">  Jira</span>
-
-        </div>
-    </div>
-
-    <!-- projects -->
-    <div id="projects" class="container section text-center">
-        <h4 class="section-heading">PROJECTS</h4><br>
-        <div class="row">
-            <div class="col-lg-6 col-sm-12">
-                <div class="card" data-aos="fade" data-aos-duration="1500">
-                    <div class="card-head text-center">
-                        <h4><i class="fa fa-telegram" aria-hidden="true"></i>
-                            <a class="project-link" href="">AdOptimize</a> </h4>
-
-                    </div>
-                    <div class="card-body text-center">
-                        <p>A product launch deck for a cross-platform ad optimization concept aimed at reducing ad budget wastage by 35% in SMBs, delivering business and marketing strategy, product roadmap, competitor analysis, and KPIs informed by estimated sales and projections.</p>
-
-                    </div>
-                </div>
-                <div class="card-body col-lg-12 butn text-center">
-                    <p>Collaborative Project</p>
-
-                </div>
-            </div>
-            <!-- <div class="col-lg-1 col-sm-2"></div> -->
-            <div class="col-lg-6 col-sm-12">
-                <div class="card" data-aos="fade" data-aos-duration="1500">
-                    <div class="card-head text-center">
-
-                        <h4> <i class="fa fa-code" aria-hidden="true"></i>
-                            <a class="project-link" href="">worDict</a> </h4>
-
-                    </div>
-                    <div class="card-body text-center">
-                        <p>A nodeJS application equivalent to users' vocabulary catalogue</p>
-
-                    </div>
-                </div>
-                <div class="col-lg-12 card-body butn text-center">
-                    <a href="https://github.com/aaryaa07/wordictWeb" class="bton"><i class="fa fa-2x fa-github"
-                            aria-hidden="true"></i></a>
-
-                </div>
-
-            </div>
-        </div>
-        <div class="row">
-
-
-            <div class="col-lg-6 col-sm-12">
-                <div class="card" data-aos="fade" data-aos-duration="1500">
-                    <div class="card-head text-center">
-                        <h4><i class="fa fa-chrome" aria-hidden="true"></i>
-                            <a class="project-link" href=""> Search with Slash</a></h4>
-
-                    </div>
-                    <div class="card-body text-center">
-                        <p>A Chrome extension(written in js) for easy navigation to any website's search bar.</p>
-
-                    </div>
-                </div>
-                <div class="col-lg-12 card-body butn text-center">
-                    <a href="https://github.com/aaryaa07/flash" class="bton"><i class="fa fa-2x fa-github"
-                            aria-hidden="true"></i></a>
-
-                </div>
-            </div>
-            <!-- <div class="col-lg-1 col-sm-1"></div> -->
-            <div class="col-lg-6 col-sm-12">
-                <div class="card" data-aos="fade" data-aos-duration="1500">
-                    <div class="card-head text-center">
-                        <h4><i class="fa fa-android" aria-hidden="true"></i>
-                            <a class="project-link" href="">Whatup' Life Foundation App</a>
-                        </h4>
-
-                    </div>
-                    <div class="card-body text-center">
-                        <p>An app for mental wellbeing. Features include Blogs, Scheduling Meetings, One to One Help and
-                            Personalised Notifications</p>
-
-                    </div>
-                </div>
-                <div class="col-lg-12 card-body butn text-center">
-                    <a href="https://github.com/aaryaa07/wlf-app" class="bton"><i class="fa fa-2x fa-github"
-                            aria-hidden="true"></i></a>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- courses -->
-    <div class="section text-center">
-        <div class="container" id="courses">
-
-            <h4 class="section-heading">COURSES</h4>
-            <div class="container section-int">
-                <div class="row">
-                    <div class="col-lg-4">
-
-                        <strong class="card-head card-ed"><a
-                                href="https://www.coursera.org/account/accomplishments/certificate/7RARKHQXKCMJ">UNIVERSITY
-                                OF MICHIGAN</a></strong><br>
-
-
-                        <span class="lead-hint">Coursera</span><br>
-                        <span class="next">Advanced Styling with Responsive Design</span><br><br>
-                        <br>
-
-
-
-                    </div>
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://www.coursera.org/account/accomplishments/certificate/G95ZYQ4U8PRP">UNIVERSITY
-                                OF MICHIGAN</a></strong><br>
-
-
-                        <span class="lead-hint">Coursera</span><br>
-                        <span class="next">Interactivity with JavaScript</span><br><br>
-                        <br>
-
-
-
-                    </div>
-               
-
-            
-            <!-- <div class="container section-int">
-                <div class="row"> -->
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://www.appbrewery.co/courses/851555/certificate">THE APP
-                                BREWERY</a></strong><br>
-
-
-                        <span class="lead-hint">Online Bootcamp</span><br>
-                        <span class="next">Introduction to Flutter Development using Dart</span><br><br>
-                        <br>
-
-
-
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://www.appbrewery.co/courses/548873/certificate">THE APP
-                                BREWERY</a></strong><br>
-
-
-                        <span class="lead-hint">Online Bootcamp</span><br>
-                        <span class="next"> The Complete Flutter Development Bootcamp Using Dart </span><br><br>
-                        <br>
-
-
-
-                    </div>
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="http://online.codingblocks.com/certificates/CBOL-78937-31fd">CODING
-                                BLOCKS</a></strong><br>
-
-
-                        <span class="lead-hint">Online Program</span><br>
-                        <span class="next">Web Development with Django</span><br><br>
-                        <br>
-
-
-
-                    </div>
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://coursera.org/share/b9033f7e8c3b8311ce16318a07174f2d">UC
-                                Davis</a></strong><br>
-
-
-                        <span class="lead-hint">Coursera</span><br>
-                        <span class="next">SQL for Data Science </span><br><br>
-                        <br>
-
-
-
-                    </div>
-
-
-                </div>
-                    
-                
-
-            </div>
-
-            <!-- <div class="container section-int">
-                <div class="row">
-                   
-                </div>
-
-            </div> -->
-            <div class="container section-int">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://online.codingblocks.com/app/certificates/CBOL-151960-7585">CODING
-                                BLOCKS</a></strong><br>
-
-
-                        <span class="lead-hint">Online Program</span><br>
-                        <span class="next">Python fo Data Science</span><br><br>
-                        <br>
-
-
-
-                    </div>
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://www.coursera.org/account/accomplishments/certificate/GPNWQHNBB728">Rice
-                                University</a></strong><br>
-
-
-                        <span class="lead-hint">Coursera</span><br>
-                        <span class="next">Python Programming Essentials </span><br><br>
-                        <br>
-
-
-
-                    </div>
-                    <div class="col-lg-4">
-                        <strong class="card-head card-ed"><a
-                                href="https://www.coursera.org/account/accomplishments/certificate/KGKDPXEQDWXD">Johns Hopkins University</a></strong><br>
-
-
-                        <span class="lead-hint">Coursera</span><br>
-                        <span class="next"> The Data Scientist’s Toolbox </span><br><br>
-                        <br>
-
-
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-
-        <!-- footer -->
-        <div class="jumbotron jumbotron-filled">
-
-         <div class="row">
-             <div class="col-lg-4 col-sm-0"></div>
-             <div class="col-lg-4 col-sm-12">
-                <h1 class="display-4  heavy-text">"Always interested <br> to hear and <br> work on  ideas."</h1>
-                <a class="email-text" href="mailto:as.aryamansingh@gmail.com">as.aryamansingh@gmail.com</a>
-             </div>
-             <div class="col-lg-6"></div>
-         </div>
-        </div>
-
-
-
-
-
-
-
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous"></script>
-        <script src="public/main.js"></script>
-
+  <script src="public/main.js"></script>
+  <script src="public/chatbot.js"></script>
 </body>
 
 </html>
