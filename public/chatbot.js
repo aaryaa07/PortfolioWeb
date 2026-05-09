@@ -218,6 +218,9 @@ function renderSuggestions() {
 
 /* ── Open / close ── */
 function openPanel() {
+  const mainEl = document.getElementById('main-scroll');
+  const savedScroll = mainEl ? mainEl.scrollTop : 0;
+
   panel.hidden = false;
   panel.classList.add('open');
   fab.classList.add('hidden');
@@ -228,12 +231,21 @@ function openPanel() {
       renderSuggestions();
     }, 250);
   }
-  setTimeout(() => input.focus(), 320);
+  setTimeout(() => {
+    input.focus({ preventScroll: true });
+    if (mainEl) mainEl.scrollTop = savedScroll;
+  }, 320);
 }
 
 function closePanel() {
+  const mainEl = document.getElementById('main-scroll');
+  const savedScroll = mainEl ? mainEl.scrollTop : 0;
+
   panel.classList.remove('open');
   fab.classList.remove('hidden');
+  input.blur();
+  if (mainEl) mainEl.scrollTop = savedScroll;
+
   setTimeout(() => { panel.hidden = true; }, 220);
 }
 
