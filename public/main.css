@@ -3083,3 +3083,56 @@ a {
   }
 }
 
+/* Fix iOS touch blocking caused by skills-grid z-index override */
+.topbar,
+.tabs,
+.tabs .nav-link,
+#nav-toggle,
+#mobile-id-toggle,
+#theme-toggle,
+.topbar-actions,
+.social,
+.social-icon,
+.chat-fab,
+.chat-panel,
+.chat-form,
+.chat-input,
+.chat-send,
+.chat-chip,
+.chat-close,
+.exp-modal,
+.exp-modal-card,
+.exp-modal-close,
+.tl-sign,
+.dock-badge,
+.cert-featured,
+.btn-primary,
+.btn-ghost {
+  position: relative;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: manipulation;
+}
+
+/* Specifically ensure the topbar sits above everything */
+.topbar {
+  z-index: 100000 !important;
+  isolation: isolate;
+}
+
+/* Remove the nuclear skills override and replace with a scoped one */
+.skills-grid {
+  position: relative !important;
+  z-index: 2 !important;
+  isolation: isolate;
+  pointer-events: auto !important;
+}
+
+.skill-col,
+.skill-tags,
+.tag {
+  position: relative !important;
+  z-index: auto !important;
+  pointer-events: auto !important;
+}
