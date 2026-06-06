@@ -3136,3 +3136,30 @@ a {
   z-index: auto !important;
   pointer-events: auto !important;
 }
+@media (max-width: 900px) {
+  #nav-toggle {
+    order: -1;
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  .topbar-brand {
+    order: 0;
+  }
+
+  .topbar-actions {
+    order: 1;
+    margin-left: auto;
+  }
+}
+@media (max-width: 900px) {
+  .topbar.tabs-open .tabs {
+    display: flex !important;
+    position: fixed !important;
+    top: 70px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    z-index: 999999999 !important;
+  }
+}
