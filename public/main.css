@@ -3209,3 +3209,13 @@ a {
     display: grid !important;
   }
 }
+@media (max-width: 900px) {
+  #nav-toggle {
+    position: relative !important;
+    z-index: 2147483647 !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    cursor: pointer !important;
+    isolation: auto !important;
+  }
+}

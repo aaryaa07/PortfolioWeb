@@ -93,7 +93,13 @@ navLinks.forEach(link => {
   const topbar = document.querySelector('.topbar');
   if (!navToggle || !topbar) return;
 
-  navToggle.addEventListener('click', (e) => {
+  navToggle.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  const open = topbar.classList.toggle('tabs-open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+navToggle.addEventListener('click', (e) => {
     const open = topbar.classList.toggle('tabs-open');
     navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
