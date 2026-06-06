@@ -1,3 +1,31 @@
+/* Simple, robust tap/click handler for mobile and desktop */
+function bindTap(el, handler, opts) {
+  if (!el) return;
+  opts = opts || {};
+  
+  let lastTouchTime = 0;
+  
+  const handleActivate = (e) => {
+    if (opts.stopPropagation !== false) e.stopPropagation();
+    if (opts.preventDefault !== false) e.preventDefault();
+    handler(e);
+  };
+  
+  el.addEventListener('touchend', (e) => {
+    lastTouchTime = Date.now();
+    handleActivate(e);
+  }, { passive: false });
+  
+  el.addEventListener('click', (e) => {
+    if (Date.now() - lastTouchTime < 600) {
+      if (opts.stopPropagation !== false) e.stopPropagation();
+      if (opts.preventDefault !== false) e.preventDefault();
+      return;
+    }
+    handleActivate(e);
+  });
+}
+
 /* ───────────────────────────────────────────────
    THEME TOGGLE — persists, smooth transition,
    honors prefers-color-scheme on first visit.
@@ -14,7 +42,7 @@
     if (meta) meta.setAttribute('content', theme === 'light' ? '#eaf4ff' : '#080b12');
   }
 
-  btn.addEventListener('click', () => {
+  bindTap(btn, () => {
     const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     applyTheme(next);
   });
@@ -65,6 +93,18 @@ function setTermPrompt(id) {
   if (p) p.textContent = promptFor(id);
 }
 
+const MOBILE_ABOUT_MQ = window.matchMedia('(max-width: 900px)');
+
+function setAboutScrollMode(id) {
+  const stage = document.getElementById('main-scroll');
+  if (!stage) return;
+  if (id === 'about' && MOBILE_ABOUT_MQ.matches) {
+    stage.classList.add('about-active');
+  } else {
+    stage.classList.remove('about-active');
+  }
+}
+
 function showPanel(id, opts) {
   opts = opts || {};
   let found = false;
@@ -76,49 +116,124 @@ function showPanel(id, opts) {
   if (!found) return;
   const prevPrompt = promptFor(currentSection);
   currentSection = id;
-  navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
-  // mirror the move in the terminal (unless the terminal itself triggered it)
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.toggle('active', l.dataset.section === id);
+  });
   if (!opts.fromTerminal && window.termEcho) window.termEcho(prevPrompt, 'cd ' + id);
   setTermPrompt(id);
+  setAboutScrollMode(id);
   window.dispatchEvent(new Event('resize'));
+  const stage = document.getElementById('main-scroll');
+  if (stage) stage.scrollTop = 0;
 }
 
-navLinks.forEach(link => {
-  link.addEventListener('click', e => { e.preventDefault(); showPanel(link.dataset.section); });
-});
+/* Init about-active for the default (about) section on mobile */
+setAboutScrollMode('about');
 
-/* Mobile nav toggle: open/close the topbar tabs on small screens */
+/* Re-check on orientation change / resize */
+MOBILE_ABOUT_MQ.addEventListener('change', () => setAboutScrollMode(currentSection));
+
+/* Wire every nav link (desktop tabs + mobile drawer clones) */
+function wireNavLink(link) {
+  if (link.dataset.navWired) return;
+  link.dataset.navWired = '1';
+  let lastTouch = 0;
+  const activate = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const id = link.dataset.section;
+    if (id) showPanel(id);
+    if (typeof window.closeMobileMenu === 'function') window.closeMobileMenu();
+  };
+  link.addEventListener('touchend', (e) => {
+    lastTouch = Date.now();
+    activate(e);
+  }, { passive: false });
+  link.addEventListener('click', (e) => {
+    if (Date.now() - lastTouch < 600) { e.preventDefault(); e.stopPropagation(); return; }
+    activate(e);
+  });
+}
+
+navLinks.forEach(wireNavLink);
+
+/* Mobile nav drawer — body-level overlay, separate from grid layout */
 (function () {
   const navToggle = document.getElementById('nav-toggle');
   const topbar = document.querySelector('.topbar');
-  if (!navToggle || !topbar) return;
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileNavPanel = document.getElementById('mobile-nav-panel');
+  const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+  const MOBILE_MQ = window.matchMedia('(max-width: 900px)');
 
+  if (!navToggle || !topbar || !mobileNav || !mobileNavPanel) return;
+
+  function buildMobileNavPanel() {
+    if (mobileNavPanel.dataset.built) return;
+    navLinks.forEach(link => {
+      const item = link.cloneNode(true);
+      item.classList.add('mobile-nav-link');
+      item.removeAttribute('data-nav-wired');
+      wireNavLink(item);
+      mobileNavPanel.appendChild(item);
+    });
+    mobileNavPanel.dataset.built = '1';
+  }
+
+  function closeMobileMenu() {
+    mobileNav.hidden = true;
+    mobileNav.setAttribute('aria-hidden', 'true');
+    topbar.classList.remove('tabs-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('mobile-nav-open');
+  }
+  window.closeMobileMenu = closeMobileMenu;
+
+  function openMobileMenu() {
+    buildMobileNavPanel();
+    mobileNav.hidden = false;
+    mobileNav.setAttribute('aria-hidden', 'false');
+    topbar.classList.add('tabs-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('mobile-nav-open');
+  }
+
+  function toggleMobileMenu() {
+    if (mobileNav.hidden) openMobileMenu();
+    else closeMobileMenu();
+  }
+
+  let navToggleLastTouch = 0;
   navToggle.addEventListener('touchend', (e) => {
-  e.preventDefault();
-  e.stopPropagation();
-  const open = topbar.classList.toggle('tabs-open');
-  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-navToggle.addEventListener('click', (e) => {
-    const open = topbar.classList.toggle('tabs-open');
-    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.preventDefault();
+    e.stopPropagation();
+    navToggleLastTouch = Date.now();
+    if (MOBILE_MQ.matches) toggleMobileMenu();
+  }, { passive: false });
+  navToggle.addEventListener('click', (e) => {
+    if (Date.now() - navToggleLastTouch < 600) { e.preventDefault(); e.stopPropagation(); return; }
+    e.preventDefault();
+    e.stopPropagation();
+    if (MOBILE_MQ.matches) toggleMobileMenu();
   });
 
-  // Close menu when a nav link is clicked (mobile)
-  navLinks.forEach(l => l.addEventListener('click', () => {
-    if (topbar.classList.contains('tabs-open')) {
-      topbar.classList.remove('tabs-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  }));
+  if (mobileNavBackdrop) {
+    let backdropLastTouch = 0;
+    mobileNavBackdrop.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      backdropLastTouch = Date.now();
+      closeMobileMenu();
+    }, { passive: false });
+    mobileNavBackdrop.addEventListener('click', (e) => {
+      if (Date.now() - backdropLastTouch < 600) { e.preventDefault(); return; }
+      e.preventDefault();
+      closeMobileMenu();
+    });
+  }
 
-  // Close when clicking outside the open menu
-  document.addEventListener('click', (e) => {
-    if (!topbar.classList.contains('tabs-open')) return;
-    if (!topbar.contains(e.target)) {
-      topbar.classList.remove('tabs-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
+  /* Desktop: horizontal tabs in topbar still work via wireNavLink above */
+  MOBILE_MQ.addEventListener('change', () => {
+    if (!MOBILE_MQ.matches) closeMobileMenu();
   });
 })();
 
@@ -131,38 +246,51 @@ navToggle.addEventListener('click', (e) => {
 
   const closePopup = () => {
     idPopup.hidden = true;
-    idPopup.style.display = 'none';
     idToggle.setAttribute('aria-expanded', 'false');
   };
-idToggle.addEventListener('click', () => {
-    const isHidden = idPopup.hidden;
-    if (isHidden) {
-      idPopup.removeAttribute('hidden');
-      idPopup.style.display = 'flex';
-      idToggle.setAttribute('aria-expanded', 'true');
-    } else {
-      idPopup.hidden = true;
-      idPopup.style.display = 'none';
-      idToggle.setAttribute('aria-expanded', 'false');
-    }
+
+  const openPopup = () => {
+    idPopup.hidden = false;
+    idToggle.setAttribute('aria-expanded', 'true');
+  };
+
+  bindTap(idToggle, () => {
+    if (idPopup.hidden) openPopup();
+    else closePopup();
   });
 
-  idClose.addEventListener('click', closePopup);
-  idPopup.addEventListener('click', (e) => {
+  bindTap(idClose, closePopup);
+  bindTap(idPopup, (e) => {
     if (e.target === idPopup) closePopup();
   });
 })();
 
 /* In-panel links that point to another level (e.g. "See my work" → projects) */
-document.querySelectorAll('.stage a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
+function bindPanelLink(a) {
+  bindTap(a, () => {
     const id = a.getAttribute('href').slice(1);
-    if (document.getElementById(id) && document.getElementById(id).classList.contains('panel')) {
-      e.preventDefault();
+    const panel = document.getElementById(id);
+    if (panel && panel.classList.contains('panel')) {
+      a.classList.add('is-pressed');
+      setTimeout(() => a.classList.remove('is-pressed'), 220);
       showPanel(id);
     }
   });
-});
+}
+
+document.querySelectorAll('.stage a[href^="#"]').forEach(bindPanelLink);
+
+(function () {
+  // "Let's talk" → mailto link: works natively on desktop; needs explicit handler on mobile
+  const letsTalk = document.querySelector('.hero-actions .btn-ghost');
+  if (letsTalk && letsTalk.href && letsTalk.href.startsWith('mailto:')) {
+    letsTalk.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      window.location.href = letsTalk.getAttribute('href');
+    }, { passive: false });
+  }
+  // Note: "See my work" (#experience) is already handled by bindPanelLink above.
+})();
 
 /* Projects — master/detail showcase */
 document.querySelectorAll('.proj-item').forEach(item => {
@@ -311,16 +439,24 @@ document.querySelectorAll('.proj-item').forEach(item => {
     setTimeout(() => { modal.hidden = true; }, 280);
   }
 
+  function tapSign(sign) {
+    sign.classList.add('is-tapped');
+    setTimeout(() => sign.classList.remove('is-tapped'), 560);
+    openModal(sign);
+  }
+
   tl.querySelectorAll('.tl-sign').forEach(sign => {
-    sign.addEventListener('click', () => {
-      sign.classList.add('is-tapped');
-      setTimeout(() => sign.classList.remove('is-tapped'), 560);
-      openModal(sign);
-    });
+    bindTap(sign, () => tapSign(sign));
   });
 
   if (modal) {
-    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+    modal.querySelectorAll('[data-close]').forEach(el => {
+      el.addEventListener('click', closeModal);
+      el.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        closeModal();
+      }, { passive: false });
+    });
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && !modal.hidden) closeModal();
     });

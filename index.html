@@ -63,28 +63,6 @@
       </div>
     </header>
 
-    <div id="mobile-id-popup" class="mobile-id-popup" hidden aria-modal="true" role="dialog" aria-label="Profile card">
-      <div class="mobile-id-card">
-        <button class="mobile-id-close" type="button" aria-label="Close profile card">&times;</button>
-        <div class="dock-id">
-          <img class="dock-photo" src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh">
-          <div class="dock-info">
-            <div class="dock-name">Aryaman Singh</div>
-            <div class="dock-role">Full-Stack &amp; Data Engineer</div>
-            <div class="dock-meta">Richardson, TX · MS IT&amp;M, UT Dallas · 3+ yrs @ Citrix</div>
-            <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
-          </div>
-          <div class="dock-badges" title="Verified credentials">
-            <a class="dock-badge dock-badge-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank" rel="noopener" title="Beta Gamma Sigma — top business honor society"><img src="public/badge-bgs.png" alt="Beta Gamma Sigma"></a>
-            <div class="dock-badge-row">
-              <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988" target="_blank" rel="noopener" title="Google AI Professional Certificate"><img src="public/badge-google-ai.png" alt="Google AI Professional"></a>
-              <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb" target="_blank" rel="noopener" title="Alteryx Designer Cloud Core"><img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core"></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- ── MAIN STAGE (full width) ── -->
     <main class="stage" id="main-scroll" tabindex="-1">
 
@@ -102,7 +80,7 @@
             delivery, and real business impact.
           </p>
           <div class="hero-actions">
-            <a href="#projects" class="btn-primary">See my work</a>
+            <a href="#experience" class="btn-primary">See my work</a>
             <a href="mailto:as.aryamansingh@gmail.com" class="btn-ghost">Let's talk &rarr;</a>
           </div>
         </div>
@@ -323,15 +301,13 @@
             <div class="project-header">
               <div class="project-icon"><i class="fa fa-futbol-o"></i></div>
               <div class="project-link-group">
+                <a href="https://github.com/aaryaa07/Touchline" class="gh-btn" target="_blank" rel="noopener"><i class="fa fa-github"></i> Code</a>
                 <a href="https://touchline-erff.onrender.com/" class="gh-btn gh-btn-live" target="_blank" rel="noopener"><i class="fa fa-external-link"></i> Live</a>
               </div>
             </div>
             <h3 class="project-name">Touchline AI</h3>
             <span class="project-sub">Football fan assistant</span>
             <p class="project-desc">An AI companion for football fans that helps newcomers choose a club and gives personalised updates on favourite and rival teams.</p>
-            <div class="project-links">
-              <a href="https://github.com/aaryaa07/Touchline" class="gh-btn" target="_blank" rel="noopener"><i class="fa fa-github"></i> Code</a>
-            </div>
             <div class="project-tags"><span class="ptag">AI</span><span class="ptag">Web</span><span class="ptag">Sports</span></div>
           </article>
 
@@ -488,8 +464,11 @@
         <div class="dock-info">
           <div class="dock-name" id="typed-name"></div>
           <div class="dock-role">Full-Stack &amp; Data Engineer</div>
-          <div class="dock-meta">Richardson, TX · MS IT&amp;M, UT Dallas · 3+ yrs @ Citrix</div>
-          <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
+          <div class="dock-meta">
+            <div class="meta-item"><i class="fa fa-map-marker" aria-hidden="true"></i> 800 W Renner Rd, Richardson, TX 75080</div>
+            <div class="meta-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i> MS IT&amp;M, UT Dallas</div>
+            <div class="meta-item"><i class="fa fa-briefcase" aria-hidden="true"></i> 3+ yrs @ Citrix</div>
+          </div>
         </div>
         <div class="dock-badges" title="Verified credentials">
           <a class="dock-badge dock-badge-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank" rel="noopener" title="Beta Gamma Sigma — top business honor society"><img src="public/badge-bgs.png" alt="Beta Gamma Sigma"></a>
@@ -498,6 +477,7 @@
             <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb" target="_blank" rel="noopener" title="Alteryx Designer Cloud Core"><img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core"></a>
           </div>
         </div>
+        <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
       </div>
 
       <div class="dock-term">
@@ -514,6 +494,38 @@
         </div>
       </div>
     </footer>
+  </div>
+
+  <!-- Mobile nav drawer — body-level overlay so taps aren't blocked by grid/stacking -->
+  <div id="mobile-nav" class="mobile-nav" hidden aria-hidden="true">
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
+    <div id="mobile-nav-panel" class="mobile-nav-panel" role="navigation" aria-label="Site sections"></div>
+  </div>
+
+  <div id="mobile-id-popup" class="mobile-id-popup" hidden aria-modal="true" role="dialog" aria-label="Profile card">
+    <div class="mobile-id-card">
+      <button class="mobile-id-close" type="button" aria-label="Close profile card">&times;</button>
+      <div class="dock-id">
+        <img class="dock-photo" src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh">
+        <div class="dock-info">
+          <div class="dock-name">Aryaman Singh</div>
+          <div class="dock-role">Full-Stack &amp; Data Engineer</div>
+          <div class="dock-meta">
+            <div class="meta-item"><i class="fa fa-map-marker" aria-hidden="true"></i> 800 W Renner Rd, Richardson, TX 75080</div>
+            <div class="meta-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i> MS IT&amp;M, UT Dallas</div>
+            <div class="meta-item"><i class="fa fa-briefcase" aria-hidden="true"></i> 3+ yrs @ Citrix</div>
+          </div>
+        </div>
+        <div class="dock-badges" title="Verified credentials">
+          <a class="dock-badge dock-badge-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank" rel="noopener" title="Beta Gamma Sigma — top business honor society"><img src="public/badge-bgs.png" alt="Beta Gamma Sigma"></a>
+          <div class="dock-badge-row">
+            <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988" target="_blank" rel="noopener" title="Google AI Professional Certificate"><img src="public/badge-google-ai.png" alt="Google AI Professional"></a>
+            <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb" target="_blank" rel="noopener" title="Alteryx Designer Cloud Core"><img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core"></a>
+          </div>
+        </div>
+        <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
+      </div>
+    </div>
   </div>
 
   <!-- Floating "Ask about Aryaman" chatbot — fully static, knowledge-base driven -->
