@@ -125,13 +125,20 @@ navLinks.forEach(link => {
 
   const closePopup = () => {
     idPopup.hidden = true;
+    idPopup.style.display = 'none';
     idToggle.setAttribute('aria-expanded', 'false');
   };
-
-  idToggle.addEventListener('click', () => {
-    const isOpen = idPopup.hidden;
-    idPopup.hidden = !isOpen;
-    idToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+idToggle.addEventListener('click', () => {
+    const isHidden = idPopup.hidden;
+    if (isHidden) {
+      idPopup.removeAttribute('hidden');
+      idPopup.style.display = 'flex';
+      idToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      idPopup.hidden = true;
+      idPopup.style.display = 'none';
+      idToggle.setAttribute('aria-expanded', 'false');
+    }
   });
 
   idClose.addEventListener('click', closePopup);

@@ -3163,3 +3163,49 @@ a {
     z-index: 999999999 !important;
   }
 }
+
+@media (max-width: 560px) {
+  #mobile-id-popup {
+    z-index: 999999999 !important;
+    position: fixed !important;
+  }
+
+  .mobile-id-card {
+    z-index: 999999999 !important;
+    position: relative !important;
+  }
+}
+
+@media (max-width: 900px) {
+  #mobile-id-popup {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    padding: 18px !important;
+  }
+
+  #mobile-id-popup:not([hidden]) {
+    display: flex !important;
+  }
+
+  .mobile-id-card {
+    position: relative !important;
+    z-index: 2147483647 !important;
+    background: var(--surface) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: 24px !important;
+    padding: 20px !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6) !important;
+  }
+}
+@media (max-width: 900px) {
+  .mobile-id-card .dock-id {
+    display: grid !important;
+  }
+}
