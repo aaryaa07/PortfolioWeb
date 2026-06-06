@@ -10,11 +10,11 @@ const KB = [
   },
   {
     keys: ['who is', 'who are', 'introduce', 'introduction', 'background', 'summary', 'about aryaman', 'about him', 'about you'],
-    answer: "Aryaman Singh is a software engineer with **3+ years at Citrix** (NetScaler Console / ADM Stylebooks) building React + Python apps in agile teams. He's currently doing his **MS in IT & Management** at UT Dallas (GPA 3.945, Business Analytics & Data Mining). Based in Richardson, TX."
+    answer: "Aryaman Singh is a software engineer with **3+ years at Citrix** (NetScaler Console / ADM Stylebooks) building React + Python apps in agile teams. He's currently doing his **MS in IT & Management** at UT Dallas (GPA 3.927, Business Analytics & Data Mining). Based in Richardson, TX."
   },
   {
     keys: ['education', 'school', 'university', 'utd', 'utdallas', 'masters', 'master', 'degree', 'gpa', 'graduate'],
-    answer: "**MS in Information Technology and Management** at **The University of Texas at Dallas** — expected **December 2026**. GPA **3.945 / 4.0**, awarded the **Program Excellence Scholarship**. Coursework spans OOP in Python, Data Management, Big Data, Statistics, RPA, and a Digital Consulting Project."
+    answer: "**MS in Information Technology and Management** at **The University of Texas at Dallas** — expected **December 2026**. GPA **3.927 / 4.0**, awarded the **Program Excellence Scholarship**. Completed coursework includes OOP in Python, Data Management, Big Data, Advanced Statistics, RPA, and a Digital Consulting Project. Currently enrolled in AWS Cloud Analytics, Predictive Analytics for Data Science, and Modeling for Business Analytics. Also earning the **Business Analytics & Data Mining Graduate Certificate** from UT Dallas."
   },
   {
     keys: ['citrix', 'cloud software group', 'netscaler', 'adm', 'stylebook', 'stylebooks'],
@@ -30,7 +30,7 @@ const KB = [
   },
   {
     keys: ['project', 'projects', 'portfolio'],
-    answer: "Featured projects: **CAMA** (AI-powered modernization assessment platform, 11 CrewAI agents, NDA), **Touchline AI** (live football-fan AI assistant — touchline-erff.onrender.com), **AdOptimize** (cross-platform ad-opt strategy deck, -35% ad waste), and **Whatup' Life Foundation** (Flutter mental-wellbeing app). Ask about any one for details!"
+    answer: "Featured projects: **Truck Fleet Risk Dashboard** (64.8M miles of telematics on Hadoop, Power BI dashboards, 83.3% accurate ML model), **Touchline AI** (live football-fan AI assistant — touchline-erff.onrender.com), **AdOptimize** (cross-platform ad-opt strategy deck, -35% ad waste), and **Whatup' Life Foundation** (Flutter mental-wellbeing app). He also built **CAMA** during his Insight Global consulting project — ask about his experience for that one!"
   },
   {
     keys: ['cama', 'modernization', 'crewai', 'consulting', 'insight global'],
@@ -39,6 +39,10 @@ const KB = [
   {
     keys: ['touchline', 'football', 'fan', 'sport', 'soccer', 'real madrid', 'madrid', 'club'],
     answer: "**Touchline AI** is an AI assistant for football fans — helps newcomers pick a club to support and gives existing fans personalised updates on their favourite/rival clubs. **Live demo:** https://touchline-erff.onrender.com/  ·  **Code:** github.com/aaryaa07/Touchline"
+  },
+  {
+    keys: ['truck', 'fleet', 'telematics', 'hadoop', 'hive', 'pig', 'risk dashboard', 'driver risk'],
+    answer: "**Truck Fleet Analysis and Risk Dashboard** — processed **64.8M miles** of truck telematics on Cloudera HDFS using Hive and Apache Pig to compute per-driver risk scores, flagging 53 of 100 drivers above a 7.0/10 threshold. Built **Power BI dashboards** covering driver risk, unsafe event patterns, and geographic hotspots. Extended with a **scikit-learn Logistic Regression model (83.3% accuracy)** predicting high-risk drivers from geospatial, behavioural, and truck brand-level features — informing route reassignment, driver coaching, and fleet investment recommendations."
   },
   {
     keys: ['adoptimize', 'ad', 'advertising', 'marketing'],
@@ -50,7 +54,7 @@ const KB = [
   },
   {
     keys: ['skill', 'skills', 'tech', 'stack', 'technologies', 'languages', 'frameworks'],
-    answer: "**Languages:** C++, Python, JavaScript.  **Frontend:** ReactJS, Flutter.  **Backend:** Node.js, Express.js, MongoDB, SQL.  **Testing:** Jest, Cypress.  **Tools:** Git, Jira, Visual Paradigm. Comfortable using GitHub Copilot and other enterprise AI tooling for productivity."
+    answer: "**Languages:** C++, Python, JavaScript.  **Frontend:** ReactJS, Flutter.  **Backend:** Node.js, Express.js, MongoDB, SQL.  **Testing:** Jest, Cypress.  **Analytics & Automation:** Alteryx, Power BI, Microsoft Power Apps, UIPath.  **Tools:** Git, Jira, Visual Paradigm. Comfortable with GitHub Copilot and other enterprise AI tooling."
   },
   {
     keys: ['react', 'reactjs', 'frontend', 'front-end'],
@@ -66,7 +70,7 @@ const KB = [
   },
   {
     keys: ['certification', 'cert', 'certifications', 'certificate', 'certificates', 'credential', 'credentials'],
-    answer: "Three highlighted credentials: **Google AI Professional Certificate** (Coursera, 7-course specialization, May 2026), **Alteryx Designer Cloud — Core** (Dec 2025), and **Beta Gamma Sigma Member** (top business honor society — top 10% undergrad / top 20% grad of AACSB-accredited business schools)."
+    answer: "Highlighted credentials: **Google AI Professional Certificate** (Coursera, 7-course specialization, May 2026), **Alteryx Designer Cloud — Core** (Dec 2025), **Business Analytics & Data Mining Graduate Certificate** (UT Dallas, in progress), and **Beta Gamma Sigma Member** (top business honor society — top 10% undergrad / top 20% grad of AACSB-accredited business schools)."
   },
   {
     keys: ['google ai', 'google certificate', 'google'],

@@ -1,74 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12" id="theme-color-meta">
+  <meta name="description" content="Aryaman Singh — Software engineer (3y at Citrix), MS in IT & Management at UT Dallas, AI builder.">
   <title>Aryaman Singh | Portfolio</title>
+  <!-- Apply saved theme before paint to prevent flash-of-wrong-theme -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) {
+          t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
     rel="stylesheet">
   <script src="https://use.fontawesome.com/0decee163c.js"></script>
   <link rel="stylesheet" href="public/main.css">
 </head>
 
 <body>
-  <div class="layout">
+  <div class="layout hud">
 
-    <!-- ── SIDEBAR ───────────────────────────────── -->
-    <aside class="sidebar">
-
-      <div class="profile">
-        <div class="avatar-wrap">
-          <img src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh" class="avatar">
-        </div>
-        <span class="name" id="typed-name"></span>
-        <span class="tagline">Full-Stack &amp; Data Engineer</span>
-        <span class="school">MS IT &amp; Management · UT Dallas<br>Business Analytics &amp; Data Mining</span>
-        <div class="avail-badge">
-          <span class="dot"></span>Open to opportunities
-        </div>
+    <!-- ── TOP NAV (full width) ── -->
+    <header class="topbar">
+      <span class="topbar-brand">aryaman<span class="tb-dot">.</span>portfolio</span>
+      <div class="tabs">
+        <a href="#about" class="nav-link active" data-section="about">About</a>
+        <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+        <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#courses" class="nav-link" data-section="courses">Courses</a>
       </div>
-
-      <nav class="sidebar-nav">
-        <a href="#about" class="nav-link active" data-section="about">
-          <span class="nav-num">01</span>About
-        </a>
-        <a href="#skills" class="nav-link" data-section="skills">
-          <span class="nav-num">02</span>Skills
-        </a>
-        <a href="#projects" class="nav-link" data-section="projects">
-          <span class="nav-num">03</span>Projects
-        </a>
-        <a href="#courses" class="nav-link" data-section="courses">
-          <span class="nav-num">04</span>Courses
-        </a>
-      </nav>
-
-      <div class="sidebar-footer">
+      <button id="nav-toggle" class="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+      <button id="mobile-id-toggle" class="mobile-id-toggle" aria-label="Open profile card" aria-expanded="false">
+        <i class="fa fa-id-card-o" aria-hidden="true"></i>
+      </button>
+      <div class="topbar-actions">
         <div class="social">
-          <a href="mailto:as.aryamansingh@gmail.com" class="social-icon" title="Email">
-            <i class="fa fa-envelope-o"></i>
-          </a>
-          <a href="https://github.com/aaryaa07" class="social-icon" title="GitHub" target="_blank" rel="noopener">
-            <i class="fa fa-github"></i>
-          </a>
-          <a href="https://linkedin.com/in/as-aryamansingh" class="social-icon" title="LinkedIn" target="_blank"
-            rel="noopener">
-            <i class="fa fa-linkedin"></i>
-          </a>
+          <a href="mailto:as.aryamansingh@gmail.com" class="social-icon" title="Email"><i class="fa fa-envelope-o"></i></a>
+          <a href="https://github.com/aaryaa07" class="social-icon" title="GitHub" target="_blank" rel="noopener"><i class="fa fa-github"></i></a>
+          <a href="https://linkedin.com/in/as-aryamansingh" class="social-icon" title="LinkedIn" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a>
         </div>
-        <span class="copyright">© 2026 Aryaman Singh</span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme" title="Toggle theme">
+          <span class="theme-toggle-track"><span class="theme-toggle-thumb">
+            <i class="fa fa-moon-o ico-dark" aria-hidden="true"></i>
+            <i class="fa fa-sun-o   ico-light" aria-hidden="true"></i>
+          </span></span>
+          <span class="theme-toggle-label"><span class="lab-dark">Dark</span><span class="lab-light">Light</span></span>
+        </button>
       </div>
-    </aside>
+    </header>
 
-    <!-- ── MAIN CONTENT ──────────────────────────── -->
-    <main class="main" id="main-scroll" tabindex="-1">
+    <div id="mobile-id-popup" class="mobile-id-popup" hidden aria-modal="true" role="dialog" aria-label="Profile card">
+      <div class="mobile-id-card">
+        <button class="mobile-id-close" type="button" aria-label="Close profile card">&times;</button>
+        <div class="dock-id">
+          <img class="dock-photo" src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh">
+          <div class="dock-info">
+            <div class="dock-name">Aryaman Singh</div>
+            <div class="dock-role">Full-Stack &amp; Data Engineer</div>
+            <div class="dock-meta">Richardson, TX · MS IT&amp;M, UT Dallas · 3+ yrs @ Citrix</div>
+            <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
+          </div>
+          <div class="dock-badges" title="Verified credentials">
+            <a class="dock-badge dock-badge-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank" rel="noopener" title="Beta Gamma Sigma — top business honor society"><img src="public/badge-bgs.png" alt="Beta Gamma Sigma"></a>
+            <div class="dock-badge-row">
+              <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988" target="_blank" rel="noopener" title="Google AI Professional Certificate"><img src="public/badge-google-ai.png" alt="Google AI Professional"></a>
+              <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb" target="_blank" rel="noopener" title="Alteryx Designer Cloud Core"><img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAIN STAGE (full width) ── -->
+    <main class="stage" id="main-scroll" tabindex="-1">
+
 
       <!-- 01 · ABOUT -->
-      <section id="about" class="section section-hero">
+      <section id="about" class="panel section-hero active">
         <div class="hero-content">
           <div class="eyebrow">01 · About</div>
           <h1 class="hero-title">
@@ -85,199 +107,255 @@
           </div>
         </div>
 
-        <aside class="hero-aside">
-          <div class="badge-panel">
-            <div class="badge-panel-head">
-              <span class="badge-panel-label">Verified Credentials</span>
-              <span class="badge-panel-dot"></span>
+        <div class="hero-aside">
+          <!-- "Now" — quick look at current build -->
+          <a class="now-card" href="#projects" aria-label="Currently building Touchline AI">
+            <div class="now-head">
+              <span class="now-pulse"></span>
+              <span class="now-label">NOW</span>
+              <span class="now-title">Currently building <strong>Touchline AI</strong></span>
             </div>
-            <a class="badge-tile badge-tile-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank"
-              rel="noopener"
-              title="Beta Gamma Sigma (BGS) recognizes and honors the top 10% of undergraduate students, top 20% of graduate students, and all doctoral candidates from business schools worldwide accredited by The Association to Advance Collegiate Schools of Business (AACSB).">
-              <img src="public/badge-bgs.png" alt="Beta Gamma Sigma | Lifetime Member" loading="lazy">
-              <div class="badge-tile-meta">
-                <span class="badge-tile-name">Beta Gamma Sigma <span class="bgs-acro">(BGS)</span></span>
-                <span class="badge-tile-sub">Business Honor Society · Lifetime Member</span>
-              </div>
-            </a>
-
-            <div class="credly-row">
-              <a class="badge-tile" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988"
-                target="_blank" rel="noopener" title="Google AI Professional Certificate | verify on Credly">
-                <img src="public/badge-google-ai.png" alt="Google AI Professional Certificate" loading="lazy">
-                <span class="badge-tile-name">Google · AI Professional</span>
-              </a>
-              <a class="badge-tile" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb"
-                target="_blank" rel="noopener" title="Alteryx Designer Cloud Core | verify on Credly">
-                <img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core Certified" loading="lazy">
-                <span class="badge-tile-name">Alteryx · Designer Cloud Core</span>
-              </a>
+            <div class="now-video-wrap">
+              <video id="now-video" class="now-video" autoplay muted loop playsinline preload="metadata">
+                <source src="public/now-demo.webm" type="video/webm">
+              </video>
             </div>
-            <div class="badge-panel-foot">Business · Tech · Verifiable</div>
-          </div>
-        </aside>
-
-        <!-- "Now" — quick look at current build -->
-        <a class="now-card" href="#projects" aria-label="Currently building Touchline AI">
-          <div class="now-head">
-            <span class="now-pulse"></span>
-            <span class="now-label">NOW</span>
-            <span class="now-title">Currently building <strong>Touchline AI</strong></span>
-          </div>
-          <div class="now-video-wrap">
-            <video id="now-video" class="now-video" autoplay muted loop playsinline preload="metadata">
-              <source src="public/now-demo.webm" type="video/webm">
-            </video>
-          </div>
-        </a>
+          </a>
+        </div>
       </section>
 
-      <!-- 02 · SKILLS -->
-      <section id="skills" class="section">
-        <div class="eyebrow">02 · Skills</div>
+      <!-- 02 · EXPERIENCE -->
+      <section id="experience" class="panel exp-scene">
+        <div class="exp-grid">
+          <div class="timeline" id="exp-timeline">
+            <div class="timeline-label">
+              <div class="eyebrow">02 · Experience</div>
+            </div>
+
+          <!-- night sky -->
+          <div class="tl-stars" aria-hidden="true"></div>
+
+          <!-- distant city skyline at the horizon -->
+          <div class="tl-skyline" aria-hidden="true">
+            <span class="bld" style="--h:120px;--w:46px;"></span>
+            <span class="bld" style="--h:180px;--w:38px;"></span>
+            <span class="bld" style="--h:96px; --w:54px;"></span>
+            <span class="bld" style="--h:150px;--w:42px;"></span>
+            <span class="bld" style="--h:210px;--w:36px;"></span>
+            <span class="bld" style="--h:128px;--w:50px;"></span>
+            <span class="bld" style="--h:172px;--w:40px;"></span>
+            <span class="bld" style="--h:108px;--w:48px;"></span>
+            <span class="bld" style="--h:196px;--w:34px;"></span>
+            <span class="bld" style="--h:140px;--w:44px;"></span>
+          </div>
+
+          <!-- roadside scenery: trees, buildings & streetlights -->
+          <div class="tl-scenery" aria-hidden="true">
+            <span class="sc sc-building" style="top:7%;  left:5%;  --h:96px; --w:54px;"></span>
+            <span class="sc sc-tree"     style="top:12%; right:7%; --s:0.95;"></span>
+            <span class="sc sc-light lt-r" style="top:20%; left:30%;"></span>
+            <span class="sc sc-tree"     style="top:30%; left:6%;  --s:1.15;"></span>
+            <span class="sc sc-building" style="top:38%; right:5%; --h:122px;--w:62px;"></span>
+            <span class="sc sc-light lt-l" style="top:46%; right:30%;"></span>
+            <span class="sc sc-tree"     style="top:56%; left:4%;  --s:0.9;"></span>
+            <span class="sc sc-tree"     style="top:64%; right:8%; --s:1.1;"></span>
+            <span class="sc sc-light lt-r" style="top:70%; left:30%;"></span>
+            <span class="sc sc-building" style="top:74%; left:6%;  --h:84px; --w:48px;"></span>
+            <span class="sc sc-tree"     style="top:87%; right:6%; --s:1.05;"></span>
+            <span class="sc sc-tree"     style="top:91%; left:9%;  --s:0.85;"></span>
+          </div>
+
+          <!-- winding country road -->
+          <svg class="tl-road" aria-hidden="true" preserveAspectRatio="none">
+            <path class="tl-road-edge"></path>
+            <path class="tl-road-base"></path>
+            <path class="tl-road-dash"></path>
+          </svg>
+
+          <!-- Latest first: Insight Global (left) -->
+          <div class="tl-entry tl-left">
+            <button class="tl-sign" type="button"
+              data-company="Insight Global"
+              data-period="Sep 2025 – Dec 2025"
+              data-role="Digital Consulting Project · UTD × Insight Global · Richardson, TX"
+              data-summary="Architected CAMA — an AI platform (React · Flask · MongoDB · 11 CrewAI agents) that cut application-modernisation assessments from weeks to hours, with a conversational GenAI interface for C-suite stakeholders."
+              data-tags="React,Flask,MongoDB,CrewAI,GenAI"
+              aria-label="Insight Global — open details">
+              <span class="tl-board">
+                <span class="tl-board-co">Insight Global</span>
+                <span class="tl-board-yr">Sep 2025 – Dec 2025</span>
+              </span>
+              <span class="tl-post"></span>
+              <span class="tl-node" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <!-- Cloud Software Group (right) -->
+          <div class="tl-entry tl-right">
+            <button class="tl-sign" type="button"
+              data-company="Cloud Software Group"
+              data-period="Jul 2022 – Apr 2025"
+              data-role="Software Engineer 1 · NetScaler Console · ADM Stylebooks · Bengaluru"
+              data-summary="Shipped React + Python tooling for Stylebooks — interactive Cytoscape.js dependency views (+20% navigation), GitLab sync (−60% sync time), 150+ Cypress E2E tests in Jenkins (−25% manual QA), and a Python cron job automating log cleanup (−85% overhead)."
+              data-tags="ReactJS,Python,Cypress,Cytoscape.js,GitLab,Jenkins"
+              aria-label="Cloud Software Group — open details">
+              <span class="tl-board">
+                <span class="tl-board-co">Cloud Software Group</span>
+                <span class="tl-board-yr">Jul 2022 – Apr 2025</span>
+              </span>
+              <span class="tl-post"></span>
+              <span class="tl-node" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <!-- Citrix R&D Intern (left) -->
+          <div class="tl-entry tl-left">
+            <button class="tl-sign" type="button"
+              data-company="Citrix R&amp;D India"
+              data-period="Jan 2022 – Jun 2022"
+              data-role="Software Engineer Intern · ADM Stylebooks · Bengaluru"
+              data-summary="Led the Stylebooks UI migration to ReactJS (100% adoption in 3 months), cut client render time 65% with the Reaflow graph library, and introduced Jest testing that reduced production defects by 40%."
+              data-tags="ReactJS,JavaScript,Jest,D3.js"
+              aria-label="Citrix R&amp;D India — open details">
+              <span class="tl-board">
+                <span class="tl-board-co">Citrix R&amp;D India</span>
+                <span class="tl-board-yr">Jan 2022 – Jun 2022</span>
+              </span>
+              <span class="tl-post"></span>
+              <span class="tl-node" aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <!-- ground / horizon -->
+          <div class="tl-ground" aria-hidden="true"></div>
+        </div>
+        </div>
+
+        <!-- pop-up "alert" with role + work -->
+        <div class="exp-modal" id="exp-modal" hidden>
+          <div class="exp-modal-backdrop" data-close></div>
+          <div class="exp-modal-card" role="dialog" aria-modal="true" aria-labelledby="exp-modal-co">
+            <button class="exp-modal-close" type="button" data-close aria-label="Close">&times;</button>
+            <div class="exp-modal-badge"><i class="fa fa-map-signs" aria-hidden="true"></i></div>
+            <div class="exp-modal-period" id="exp-modal-period"></div>
+            <h3 class="exp-modal-co" id="exp-modal-co"></h3>
+            <div class="exp-modal-role" id="exp-modal-role"></div>
+            <p class="exp-modal-summary" id="exp-modal-summary"></p>
+            <div class="exp-modal-tags ptag-row" id="exp-modal-tags"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 · SKILLS -->
+      <section id="skills" class="panel">
+        <div class="eyebrow">03 · Skills</div>
         <h2 class="section-title">Tech Stack</h2>
         <div class="skills-grid">
           <div class="skill-col">
-            <div class="skill-cat">Software Dev</div>
+            <div class="skill-cat">Languages</div>
             <div class="skill-tags">
-              <span class="tag">C++</span>
               <span class="tag">Python</span>
               <span class="tag">JavaScript</span>
-            </div>
-          </div>
-          <div class="skill-col">
-            <div class="skill-cat">Frontend</div>
-            <div class="skill-tags">
-              <span class="tag">ReactJS</span>
-              <span class="tag">Flutter</span>
-            </div>
-          </div>
-          <div class="skill-col">
-            <div class="skill-cat">Backend</div>
-            <div class="skill-tags">
-              <span class="tag">NodeJS</span>
-              <span class="tag">ExpressJS</span>
-              <span class="tag">MongoDB</span>
+              <span class="tag">C++</span>
               <span class="tag">SQL</span>
             </div>
           </div>
           <div class="skill-col">
-            <div class="skill-cat">Testing</div>
+            <div class="skill-cat">Web &amp; Mobile</div>
             <div class="skill-tags">
-              <span class="tag">Jest</span>
-              <span class="tag">Cypress</span>
+              <span class="tag">ReactJS</span>
+              <span class="tag">NodeJS</span>
+              <span class="tag">ExpressJS</span>
+              <span class="tag">MongoDB</span>
+              <span class="tag">Flutter</span>
             </div>
           </div>
           <div class="skill-col">
-            <div class="skill-cat">Tools</div>
+            <div class="skill-cat">Data &amp; Automation</div>
             <div class="skill-tags">
+              <span class="tag">Alteryx</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Power Apps</span>
+              <span class="tag">UIPath</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <div class="skill-cat">Testing &amp; Tools</div>
+            <div class="skill-tags">
+              <span class="tag">Jest</span>
+              <span class="tag">Cypress</span>
               <span class="tag">Git</span>
               <span class="tag">Jira</span>
+              <span class="tag">Visual Paradigm</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 03 · PROJECTS -->
-      <section id="projects" class="section">
-        <div class="eyebrow">03 · Projects</div>
+      <!-- 04 · PROJECTS -->
+      <section id="projects" class="panel">
+        <div class="eyebrow">04 · Projects</div>
         <h2 class="section-title">Selected Work</h2>
         <div class="projects-grid">
-
-          <div class="project-card">
+          <article class="project-card">
             <div class="project-header">
-              <i class="fa fa-telegram project-icon"></i>
+              <div class="project-icon"><i class="fa fa-bullseye"></i></div>
               <span class="collab-tag">Team Project</span>
             </div>
             <h3 class="project-name">AdOptimize</h3>
-            <p class="project-desc">Cross-platform ad optimization concept targeting a 35% reduction in ad budget
-              wastage for SMBs, complete with product roadmap, competitor analysis, and data-backed KPIs.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="ptag">Strategy</span>
-                <span class="ptag">Analytics</span>
-                <span class="ptag">Product</span>
-              </div>
-            </div>
-          </div>
+            <span class="project-sub">Ad strategy & spend reduction</span>
+            <p class="project-desc">A cross-platform ad optimization concept built to cut wasted ad spend for SMBs, paired with product roadmap, competitor analysis, and data-backed KPIs.</p>
+            <div class="project-tags"><span class="ptag">Strategy</span><span class="ptag">Analytics</span><span class="ptag">Product</span></div>
+          </article>
 
-          <div class="project-card">
+          <article class="project-card">
             <div class="project-header">
-              <i class="fa fa-cogs project-icon"></i>
-              <span class="collab-tag collab-tag-nda"><i class="fa fa-lock"></i> NDA Project</span>
+              <div class="project-icon"><i class="fa fa-truck"></i></div>
+              <span class="collab-tag">Academic Project</span>
             </div>
-            <h3 class="project-name">CAMA <span class="project-sub">— Comprehensive Automated Modernization
-                Assessment</span></h3>
-            <p class="project-desc">AI-powered platform with 11 CrewAI agents that automates application modernization
-              assessments across People, Process, Technology, and Business Value. Generates 7Rs rationalization
-              scorecards, cost projections, and risk assessments, with a conversational GenAI interface that lets the
-              C-suite drill into any report component, cutting evaluation time from weeks to hours.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="ptag">React</span>
-                <span class="ptag">Flask</span>
-                <span class="ptag">MongoDB</span>
-                <span class="ptag">CrewAI</span>
-              </div>
-            </div>
-          </div>
+            <h3 class="project-name">Truck Fleet Risk Dashboard</h3>
+            <span class="project-sub">Telematics & risk analytics</span>
+            <p class="project-desc">Crunched tens of millions of miles of truck telematics on Hadoop (Hive + Pig) to score risk and shipped Power BI dashboards plus a scikit-learn model for high-risk driver alerts.</p>
+            <div class="project-tags"><span class="ptag">Hadoop</span><span class="ptag">Power BI</span><span class="ptag">Python</span><span class="ptag">ML</span></div>
+          </article>
 
-          <div class="project-card">
+          <article class="project-card">
             <div class="project-header">
-              <i class="fa fa-futbol-o project-icon"></i>
+              <div class="project-icon"><i class="fa fa-futbol-o"></i></div>
               <div class="project-link-group">
-                <a href="https://touchline-erff.onrender.com/" class="gh-btn gh-btn-live" target="_blank"
-                  rel="noopener">
-                  <i class="fa fa-external-link"></i> Live
-                </a>
-                <a href="https://github.com/aaryaa07/Touchline" class="gh-btn" target="_blank" rel="noopener">
-                  <i class="fa fa-github"></i> Code
-                </a>
+                <a href="https://touchline-erff.onrender.com/" class="gh-btn gh-btn-live" target="_blank" rel="noopener"><i class="fa fa-external-link"></i> Live</a>
               </div>
             </div>
             <h3 class="project-name">Touchline AI</h3>
-            <p class="project-desc">AI assistant for football fans - helps newcomers choose a club to support, and gives
-              existing fans quick, personalised updates on their favourite or rival clubs. Live at
-              touchline-erff.onrender.com.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="ptag">AI</span>
-                <span class="ptag">Web</span>
-                <span class="ptag">Sports Data</span>
-              </div>
+            <span class="project-sub">Football fan assistant</span>
+            <p class="project-desc">An AI companion for football fans that helps newcomers choose a club and gives personalised updates on favourite and rival teams.</p>
+            <div class="project-links">
+              <a href="https://github.com/aaryaa07/Touchline" class="gh-btn" target="_blank" rel="noopener"><i class="fa fa-github"></i> Code</a>
             </div>
-          </div>
+            <div class="project-tags"><span class="ptag">AI</span><span class="ptag">Web</span><span class="ptag">Sports</span></div>
+          </article>
 
-          <div class="project-card">
+          <article class="project-card">
             <div class="project-header">
-              <i class="fa fa-android project-icon"></i>
-              <div class="project-link-group">
-                <a href="https://github.com/aaryaa07/wlf-app" class="gh-btn" target="_blank" rel="noopener">
-                  <i class="fa fa-github"></i> Code
-                </a>
-              </div>
+              <div class="project-icon"><i class="fa fa-heartbeat"></i></div>
+              <span class="collab-tag">Mobile App</span>
             </div>
             <h3 class="project-name">Whatup' Life Foundation</h3>
-            <p class="project-desc">Mental wellbeing mobile app featuring a blog platform, session scheduling,
-              one-to-one peer support, and personalised push notifications.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="ptag">Flutter</span>
-                <span class="ptag">Dart</span>
-              </div>
-            </div>
-          </div>
-
+            <span class="project-sub">Wellbeing support app</span>
+            <p class="project-desc">A mental wellbeing mobile app with a blog platform, session scheduling, peer support, and personalised push notifications.</p>
+            <div class="project-tags"><span class="ptag">Flutter</span><span class="ptag">Dart</span></div>
+          </article>
         </div>
       </section>
 
-      <!-- 04 · EDUCATION & CERTIFICATIONS -->
-      <section id="courses" class="section">
-        <div class="eyebrow">04 · Education</div>
-        <h2 class="section-title">Education &amp; Certifications</h2>
+      <!-- 05 · EDUCATION & CERTIFICATIONS -->
+      <section id="courses" class="panel">
+        <div class="eyebrow">05 · Education</div>
+        <h2 class="section-title">Certifications &amp; Courses</h2>
 
         <!-- Featured certifications -->
-        <div class="cert-row">
+        <div class="courses-grid-layout">
+          <div class="cert-row">
 
           <a class="cert-featured" data-brand="google" href="public/GoogleAIProfessional.pdf" target="_blank"
             rel="noopener">
@@ -383,30 +461,59 @@
               <span class="utd-name">System Analysis &amp; Project Management</span>
             </div>
           </div>
+
+          <div class="utd-grid" style="margin-top:10px">
+            <div class="utd-card utd-card-ip">
+              <span class="utd-code">MIS 6347</span>
+              <span class="utd-name">AWS Cloud Analytics</span>
+            </div>
+            <div class="utd-card utd-card-ip">
+              <span class="utd-code">MKT 6337</span>
+              <span class="utd-name">Predictive Analytics for Data Science</span>
+            </div>
+            <div class="utd-card utd-card-ip">
+              <span class="utd-code">MIS 6386</span>
+              <span class="utd-name">Modeling for Business Analytics</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- FOOTER / CONTACT -->
-      <footer class="contact-footer">
-        <div class="footer-inner">
-          <p class="footer-quote">"Always interested to hear and work on ideas."</p>
-          <a href="mailto:as.aryamansingh@gmail.com" class="footer-email">as.aryamansingh@gmail.com</a>
-          <div class="footer-socials">
-            <a href="mailto:as.aryamansingh@gmail.com" class="social-icon" title="Email">
-              <i class="fa fa-envelope-o"></i>
-            </a>
-            <a href="https://github.com/aaryaa07" class="social-icon" title="GitHub" target="_blank" rel="noopener">
-              <i class="fa fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/as-aryamansingh" class="social-icon" title="LinkedIn" target="_blank"
-              rel="noopener">
-              <i class="fa fa-linkedin"></i>
-            </a>
+    </main>
+
+    <!-- ── BOTTOM DOCK: fixed ID card + working terminal ── -->
+    <footer class="dockbar">
+      <div class="dock-id">
+        <img class="dock-photo" src="public/AryamanSinghLinkedInProfilePic.PNG" alt="Aryaman Singh">
+        <div class="dock-info">
+          <div class="dock-name" id="typed-name"></div>
+          <div class="dock-role">Full-Stack &amp; Data Engineer</div>
+          <div class="dock-meta">Richardson, TX · MS IT&amp;M, UT Dallas · 3+ yrs @ Citrix</div>
+          <div class="dock-status"><span class="dot"></span>Open to work · 2026</div>
+        </div>
+        <div class="dock-badges" title="Verified credentials">
+          <a class="dock-badge dock-badge-wide" href="public/BGS_Membership_Certificate.pdf" target="_blank" rel="noopener" title="Beta Gamma Sigma — top business honor society"><img src="public/badge-bgs.png" alt="Beta Gamma Sigma"></a>
+          <div class="dock-badge-row">
+            <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/7966c337-1679-4760-b0cd-2093efca9988" target="_blank" rel="noopener" title="Google AI Professional Certificate"><img src="public/badge-google-ai.png" alt="Google AI Professional"></a>
+            <a class="dock-badge dock-badge-circle" href="https://www.credly.com/badges/bdf9d7f5-2bde-40b4-a9e8-01171f8e4edb" target="_blank" rel="noopener" title="Alteryx Designer Cloud Core"><img src="public/badge-alteryx.png" alt="Alteryx Designer Cloud Core"></a>
           </div>
         </div>
-      </footer>
+      </div>
 
-    </main>
+      <div class="dock-term">
+        <div class="term-head">
+          <span class="term-tab"><i class="fa fa-terminal"></i> TERMINAL</span>
+          <span class="term-hint">try <b>cd projects</b> · <b>ls</b> · <b>help</b></span>
+        </div>
+        <div class="term-body" id="term-body">
+          <div class="term-out" id="term-out"></div>
+          <label class="term-input-line" for="term-input">
+            <span class="term-prompt" id="term-prompt">aryaman@portfolio:~$</span>
+            <input class="term-input" id="term-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal command input">
+          </label>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <!-- Floating "Ask about Aryaman" chatbot — fully static, knowledge-base driven -->
