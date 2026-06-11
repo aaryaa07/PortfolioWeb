@@ -347,7 +347,7 @@ document.querySelectorAll('.proj-item').forEach(item => {
     } else if (name === 'pwd') {
       line('/home/aryaman/portfolio' + (currentSection === 'about' ? '' : '/' + currentSection), 'term-info');
     } else if (name === 'whoami') {
-      line('Aryaman Singh — Full-Stack &amp; Data Engineer · 3+ yrs @ Citrix · MS @ UT Dallas · open to work', 'term-info');
+      line('Aryaman Singh — Full-Stack &amp; Data Engineer · 3+ years SWE @ Citrix · MS @ UT Dallas · open to work', 'term-info');
     } else if (name === 'help' || name === 'man') {
       line('commands: <span class="term-accent">cd &lt;section&gt;</span> · <span class="term-accent">ls</span> · <span class="term-accent">pwd</span> · <span class="term-accent">whoami</span> · <span class="term-accent">open &lt;github|linkedin|email&gt;</span> · <span class="term-accent">clear</span>', 'term-info');
       line('sections: <span class="term-accent">about experience skills projects courses</span>  — or just click the tabs above.', 'term-info');

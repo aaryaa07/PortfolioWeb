@@ -233,6 +233,7 @@ a {
   gap: clamp(10px, 1.2vw, 16px);
   align-items: start;
   min-height: 0;
+  height: 100%;
 }
 
 /* fixed ID card */
@@ -266,9 +267,10 @@ a {
   justify-self: start;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   width: auto;
   align-items: center;
+  margin-top: -3px;
 }
 .dock-name { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; color: var(--text); letter-spacing: -0.02em; line-height: 1.18; min-height: 1em; }
 .dock-name::after { content: '|'; color: var(--accent); animation: blink 0.75s step-end infinite; }
@@ -331,12 +333,12 @@ a {
 }
 .dock-badge-wide {
   width: 100%;
-  max-width: 80px;
+  max-width: 74px;
   height: auto;
 }
 .dock-badge-circle {
-  width: clamp(55px, 6.5vw, 70px);
-  height: clamp(55px, 6.5vw, 70px);
+  width: clamp(48px, 5.5vw, 62px);
+  height: clamp(48px, 5.5vw, 62px);
   flex-shrink: 0;
 }
 .dock-badge img {
@@ -351,7 +353,7 @@ a {
 
 /* terminal — stays dark in both themes */
 .dock-term {
-  display: flex; flex-direction: column; min-height: 0; max-height: 100%;
+  display: flex; flex-direction: column; min-height: 0; height: 100%;
   align-self: stretch;
   background: #0b0f17; border: 1px solid var(--border-strong); border-radius: 16px;
   overflow: hidden;
@@ -460,7 +462,7 @@ a {
     min-width: 0;
     margin-left: 0;
   }
-  .dockbar { grid-template-columns: 1fr; align-items: stretch; }
+  .dockbar { grid-template-columns: 1fr; align-items: stretch; height: auto; }
   .dock-term { min-height: 220px; max-height: 220px; }
 
   .section-hero .hero-aside {
