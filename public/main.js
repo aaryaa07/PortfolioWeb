@@ -27,7 +27,7 @@ function bindTap(el, handler, opts) {
 }
 
 /* ───────────────────────────────────────────────
-   THEME TOGGLE — persists, smooth transition,
+   THEME TOGGLE - persists, smooth transition,
    honors prefers-color-scheme on first visit.
 ─────────────────────────────────────────────── */
 (function () {
@@ -157,7 +157,7 @@ function wireNavLink(link) {
 
 navLinks.forEach(wireNavLink);
 
-/* Mobile nav drawer — body-level overlay, separate from grid layout */
+/* Mobile nav drawer - body-level overlay, separate from grid layout */
 (function () {
   const navToggle = document.getElementById('nav-toggle');
   const topbar = document.querySelector('.topbar');
@@ -177,6 +177,14 @@ navLinks.forEach(wireNavLink);
       wireNavLink(item);
       mobileNavPanel.appendChild(item);
     });
+    // Social links: hidden in the top bar on narrow phones, so offer them here.
+    const social = topbar.querySelector('.social');
+    if (social) {
+      const copy = social.cloneNode(true);
+      copy.className = 'mobile-nav-social';
+      copy.querySelectorAll('a').forEach(a => a.setAttribute('aria-label', a.getAttribute('title') || ''));
+      mobileNavPanel.appendChild(copy);
+    }
     mobileNavPanel.dataset.built = '1';
   }
 
@@ -245,14 +253,21 @@ navLinks.forEach(wireNavLink);
   if (!idToggle || !idPopup || !idClose) return;
 
   const closePopup = () => {
+    if (idPopup.hidden) return;
     idPopup.hidden = true;
     idToggle.setAttribute('aria-expanded', 'false');
+    idToggle.focus({ preventScroll: true });   // return focus to the button that opened it
   };
 
   const openPopup = () => {
     idPopup.hidden = false;
     idToggle.setAttribute('aria-expanded', 'true');
+    idClose.focus({ preventScroll: true });    // keyboard users land on the close button
   };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !idPopup.hidden) closePopup();
+  });
 
   bindTap(idToggle, () => {
     if (idPopup.hidden) openPopup();
@@ -260,9 +275,11 @@ navLinks.forEach(wireNavLink);
   });
 
   bindTap(idClose, closePopup);
+  // Only the dimmed backdrop closes the card. Don't cancel taps inside it,
+  // otherwise the badge links (BGS, Phi Kappa Phi, Credly) never open on phones.
   bindTap(idPopup, (e) => {
     if (e.target === idPopup) closePopup();
-  });
+  }, { preventDefault: false, stopPropagation: false });
 })();
 
 /* In-panel links that point to another level (e.g. "See my work" → projects) */
@@ -292,7 +309,7 @@ document.querySelectorAll('.stage a[href^="#"]').forEach(bindPanelLink);
   // Note: "See my work" (#experience) is already handled by bindPanelLink above.
 })();
 
-/* Projects — master/detail showcase */
+/* Projects - master/detail showcase */
 document.querySelectorAll('.proj-item').forEach(item => {
   item.addEventListener('click', () => {
     const key = item.dataset.proj;
@@ -341,16 +358,16 @@ document.querySelectorAll('.proj-item').forEach(item => {
       let t = (!arg || arg === '~' || arg === '/' || arg === '..') ? 'about'
             : arg.replace(/^\.\//, '').replace(/\/$/, '');
       if (SECTIONS.includes(t)) showPanel(t, { fromTerminal: true });
-      else line('cd: no such section: ' + esc(arg) + '  — try <span class="term-accent">ls</span>', 'term-err');
+      else line('cd: no such section: ' + esc(arg) + '  - try <span class="term-accent">ls</span>', 'term-err');
     } else if (name === 'ls' || name === 'dir') {
       line('<span class="term-accent">about/  experience/  skills/  projects/  courses/</span>');
     } else if (name === 'pwd') {
       line('/home/aryaman/portfolio' + (currentSection === 'about' ? '' : '/' + currentSection), 'term-info');
     } else if (name === 'whoami') {
-      line('Aryaman Singh — Full-Stack &amp; Data Engineer · 3+ years SWE @ Citrix · MS @ UT Dallas · open to work', 'term-info');
+      line('Aryaman Singh - Full-Stack &amp; Data Engineer · 3+ years SWE @ Citrix · MS @ UT Dallas · open to work', 'term-info');
     } else if (name === 'help' || name === 'man') {
       line('commands: <span class="term-accent">cd &lt;section&gt;</span> · <span class="term-accent">ls</span> · <span class="term-accent">pwd</span> · <span class="term-accent">whoami</span> · <span class="term-accent">open &lt;github|linkedin|email&gt;</span> · <span class="term-accent">clear</span>', 'term-info');
-      line('sections: <span class="term-accent">about experience skills projects courses</span>  — or just click the tabs above.', 'term-info');
+      line('sections: <span class="term-accent">about experience skills projects courses</span>  - or just click the tabs above.', 'term-info');
     } else if (name === 'open') {
       if (OPEN[arg]) { line('opening ' + esc(arg) + ' …', 'term-info'); window.open(OPEN[arg], '_blank', 'noopener'); }
       else line('open: try <span class="term-accent">github</span> | <span class="term-accent">linkedin</span> | <span class="term-accent">email</span>', 'term-err');
@@ -368,105 +385,50 @@ document.querySelectorAll('.proj-item').forEach(item => {
   });
   body.addEventListener('click', () => input.focus());
 
-  line('<span class="term-info">welcome — this terminal works. type <span class="term-accent">help</span>, or navigate with <span class="term-accent">cd projects</span>.</span>');
+  line('<span class="term-info">welcome - this terminal works. type <span class="term-accent">help</span>, or navigate with <span class="term-accent">cd projects</span>.</span>');
   setTermPrompt('about');
 })();
 
 /* ───────────────────────────────────────────────
-   EXPERIENCE — country-road journey.
-   • A winding SVG road snakes between roadside
-     sign-posts (alternating left / right).
-   • Each sign shows the company name; clicking it
-     wobbles the sign and pops up an "alert" with
-     the role and the work done there.
+   EXPERIENCE - route that fills as the panel scrolls
+   (the panel itself is the scroll container).
 ─────────────────────────────────────────────── */
 (function () {
-  const tl = document.getElementById('exp-timeline');
-  if (!tl) return;
-
-  const road  = tl.querySelector('.tl-road');
-  const paths = tl.querySelectorAll('.tl-road-edge, .tl-road-base, .tl-road-dash');
-
-  function buildRoad() {
-    const nodes = Array.from(tl.querySelectorAll('.tl-node'));
-    if (!nodes.length || !road) return;
-    const W = tl.clientWidth, H = tl.clientHeight;
-    const base = tl.getBoundingClientRect();
-    road.setAttribute('viewBox', `0 0 ${W} ${H}`);
-
-    const pts = nodes.map(n => {
-      const r = n.getBoundingClientRect();
-      return { x: r.left + r.width / 2 - base.left, y: r.top + r.height / 2 - base.top };
-    });
-
-    // Bleed the road off the top and bottom like a real road.
-    const head = { x: pts[0].x, y: -10 };
-    const tail = { x: pts[pts.length - 1].x, y: H + 10 };
-    const all = [head, ...pts, tail];
-
-    let d = `M ${all[0].x.toFixed(1)} ${all[0].y.toFixed(1)}`;
-    for (let i = 1; i < all.length; i++) {
-      const a = all[i - 1], b = all[i];
-      const my = (a.y + b.y) / 2;
-      d += ` C ${a.x.toFixed(1)} ${my.toFixed(1)}, ${b.x.toFixed(1)} ${my.toFixed(1)}, ${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
-    }
-    paths.forEach(p => p.setAttribute('d', d));
-  }
-
-  /* ── Pop-up modal ── */
-  const modal = document.getElementById('exp-modal');
-  const $ = id => document.getElementById(id);
-
-  function openModal(sign) {
-    $('exp-modal-period').textContent  = sign.dataset.period || '';
-    $('exp-modal-co').textContent      = sign.dataset.company || '';
-    $('exp-modal-role').textContent    = sign.dataset.role || '';
-    $('exp-modal-summary').textContent = sign.dataset.summary || '';
-    const tagWrap = $('exp-modal-tags');
-    tagWrap.innerHTML = '';
-    (sign.dataset.tags || '').split(',').forEach(t => {
-      t = t.trim(); if (!t) return;
-      const s = document.createElement('span');
-      s.className = 'ptag';
-      s.textContent = t;
-      tagWrap.appendChild(s);
-    });
-    modal.hidden = false;
-    requestAnimationFrame(() => modal.classList.add('show'));
-  }
-  function closeModal() {
-    modal.classList.remove('show');
-    setTimeout(() => { modal.hidden = true; }, 280);
-  }
-
-  function tapSign(sign) {
-    sign.classList.add('is-tapped');
-    setTimeout(() => sign.classList.remove('is-tapped'), 560);
-    openModal(sign);
-  }
-
-  tl.querySelectorAll('.tl-sign').forEach(sign => {
-    bindTap(sign, () => tapSign(sign));
-  });
-
-  if (modal) {
-    modal.querySelectorAll('[data-close]').forEach(el => {
-      el.addEventListener('click', closeModal);
-      el.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        closeModal();
-      }, { passive: false });
-    });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !modal.hidden) closeModal();
+  const panel = document.getElementById('experience');
+  const route = document.getElementById('wb-route');
+  if (!panel || !route) return;
+  const stops = route.querySelectorAll('.wb-stop');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const box = panel.getBoundingClientRect();
+    const r = route.getBoundingClientRect();
+    // Content that fits without scrolling counts as fully travelled.
+    const fits = panel.scrollHeight <= panel.clientHeight + 4;
+    const mid = box.top + panel.clientHeight * 0.6;
+    const p = fits ? 1 : Math.max(0, Math.min(1, (mid - r.top) / r.height));
+    route.style.setProperty('--p', p.toFixed(4));
+    stops.forEach(s => {
+      const pin = s.querySelector('.wb-pin').getBoundingClientRect();
+      s.classList.toggle('reached', fits || pin.top < mid);
     });
   }
+  const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  panel.addEventListener('scroll', queue, { passive: true });
+  window.addEventListener('resize', queue);
+  // Re-measure whenever the panel is shown (tab, terminal "cd", or link).
+  new MutationObserver(queue).observe(panel, { attributes: true, attributeFilter: ['class'] });
+  update();
+})();
 
-  let rT;
-  window.addEventListener('resize', () => { clearTimeout(rT); rT = setTimeout(buildRoad, 80); });
-  window.addEventListener('load', buildRoad);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(buildRoad);
-  setTimeout(buildRoad, 150);
-  setTimeout(buildRoad, 600);
-  buildRoad();
+/* ── Pointer spotlight on Experience / Projects cards ── */
+(function () {
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+  document.addEventListener('pointermove', (e) => {
+    const card = e.target.closest && e.target.closest('.wb-card');
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 })();

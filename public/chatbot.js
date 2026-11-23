@@ -1,5 +1,5 @@
 /* ────────────────────────────────────────────────────────────────
-   "Ask about Aryaman" — fully static, client-side keyword chatbot.
+   "Ask about Aryaman" - fully static, client-side keyword chatbot.
    No API, no build step. Knowledge base + intent matcher.
 ──────────────────────────────────────────────────────────────── */
 
@@ -14,7 +14,7 @@ const KB = [
   },
   {
     keys: ['education', 'school', 'university', 'utd', 'utdallas', 'masters', 'master', 'degree', 'gpa', 'graduate'],
-    answer: "**MS in Information Technology and Management** at **The University of Texas at Dallas** — expected **December 2026**. GPA **3.927 / 4.0**, awarded the **Program Excellence Scholarship**. Completed coursework includes OOP in Python, Data Management, Big Data, Advanced Statistics, RPA, and a Digital Consulting Project. Currently enrolled in AWS Cloud Analytics, Predictive Analytics for Data Science, and Modeling for Business Analytics. Also earning the **Business Analytics & Data Mining Graduate Certificate** from UT Dallas."
+    answer: "**MS in Information Technology and Management** at **The University of Texas at Dallas** - expected **December 2026**. GPA **3.927 / 4.0**, awarded the **Program Excellence Scholarship**. Completed coursework includes OOP in Python, Data Management, Big Data, Advanced Statistics, RPA, and a Digital Consulting Project. Currently enrolled in AWS Cloud Analytics, Predictive Analytics for Data Science, and Modeling for Business Analytics. Also earning the **Business Analytics & Data Mining Graduate Certificate** from UT Dallas."
   },
   {
     keys: ['citrix', 'cloud software group', 'netscaler', 'adm', 'stylebook', 'stylebooks'],
@@ -26,31 +26,31 @@ const KB = [
   },
   {
     keys: ['intern', 'internship', 'gravitas', 'accio'],
-    answer: "Internships: **Gravitas AI** (London, remote — built an Angular RBAC UI with Node.js backend services), **Accio Robotics** (migrated their site from no-code to a custom Node.js app with scroll-triggered video controls), and **Citrix R&D India** (led the Stylebooks UI migration from vanilla JS to ReactJS, 100% adoption in 3 months)."
+    answer: "Internships: **Gravitas AI** (London, remote - built an Angular RBAC UI with Node.js backend services), **Accio Robotics** (migrated their site from no-code to a custom Node.js app with scroll-triggered video controls), and **Citrix R&D India** (led the Stylebooks UI migration from vanilla JS to ReactJS, 100% adoption in 3 months)."
   },
   {
     keys: ['project', 'projects', 'portfolio'],
-    answer: "Featured projects: **Truck Fleet Risk Dashboard** (64.8M miles of telematics on Hadoop, Power BI dashboards, 83.3% accurate ML model), **Touchline AI** (live football-fan AI assistant — touchline-erff.onrender.com), **AdOptimize** (cross-platform ad-opt strategy deck, -35% ad waste), and **Whatup' Life Foundation** (Flutter mental-wellbeing app). He also built **CAMA** during his Insight Global consulting project — ask about his experience for that one!"
+    answer: "Featured projects: **Truck Fleet Risk Dashboard** (64.8M miles of telematics on Hadoop, Power BI dashboards, 83.3% accurate ML model), **Touchline AI** (live football-fan AI assistant - touchline-erff.onrender.com), **AdOptimize** (cross-platform ad-opt strategy deck, -35% ad waste), and **Whatup' Life Foundation** (Flutter mental-wellbeing app). He also built **CAMA** during his Insight Global consulting project - ask about his experience for that one!"
   },
   {
     keys: ['cama', 'modernization', 'crewai', 'consulting', 'insight global'],
-    answer: "**CAMA — Comprehensive Automated Modernization Assessment** (Sep – Dec 2025, Insight Global Consulting Project). Architected an AI platform with **React + Flask + MongoDB + 11 CrewAI agents** that automates app-modernization assessments across People, Process, Technology, and Business Value. Generates 7Rs rationalization scorecards, cost projections, risk assessments, with a conversational GenAI interface — **cutting evaluation time from weeks to hours**. *NDA project.*"
+    answer: "**CAMA - Comprehensive Automated Modernization Assessment** (Sep – Dec 2025, Insight Global Consulting Project). Architected an AI platform with **React + Flask + MongoDB + 11 CrewAI agents** that automates app-modernization assessments across People, Process, Technology, and Business Value. Generates 7Rs rationalization scorecards, cost projections, risk assessments, with a conversational GenAI interface - **cutting evaluation time from weeks to hours**. *NDA project.*"
   },
   {
     keys: ['touchline', 'football', 'fan', 'sport', 'soccer', 'real madrid', 'madrid', 'club'],
-    answer: "**Touchline AI** is an AI assistant for football fans — helps newcomers pick a club to support and gives existing fans personalised updates on their favourite/rival clubs. **Live demo:** https://touchline-erff.onrender.com/  ·  **Code:** github.com/aaryaa07/Touchline"
+    answer: "**Touchline AI** is an AI assistant for football fans - helps newcomers pick a club to support and gives existing fans personalised updates on their favourite/rival clubs. **Live demo:** https://touchline-erff.onrender.com/  ·  **Code:** github.com/aaryaa07/Touchline"
   },
   {
     keys: ['truck', 'fleet', 'telematics', 'hadoop', 'hive', 'pig', 'risk dashboard', 'driver risk'],
-    answer: "**Truck Fleet Analysis and Risk Dashboard** — processed **64.8M miles** of truck telematics on Cloudera HDFS using Hive and Apache Pig to compute per-driver risk scores, flagging 53 of 100 drivers above a 7.0/10 threshold. Built **Power BI dashboards** covering driver risk, unsafe event patterns, and geographic hotspots. Extended with a **scikit-learn Logistic Regression model (83.3% accuracy)** predicting high-risk drivers from geospatial, behavioural, and truck brand-level features — informing route reassignment, driver coaching, and fleet investment recommendations."
+    answer: "**Truck Fleet Analysis and Risk Dashboard** - processed **64.8M miles** of truck telematics on Cloudera HDFS using Hive and Apache Pig to compute per-driver risk scores, flagging 53 of 100 drivers above a 7.0/10 threshold. Built **Power BI dashboards** covering driver risk, unsafe event patterns, and geographic hotspots. Extended with a **scikit-learn Logistic Regression model (83.3% accuracy)** predicting high-risk drivers from geospatial, behavioural, and truck brand-level features - informing route reassignment, driver coaching, and fleet investment recommendations."
   },
   {
     keys: ['adoptimize', 'ad', 'advertising', 'marketing'],
-    answer: "**AdOptimize** — a product-launch deck for a cross-platform ad-optimization concept aimed at **reducing ad budget wastage by 35% in SMBs**. Covered business strategy, product roadmap, competitor analysis, and KPIs informed by sales projections."
+    answer: "**AdOptimize** - a product-launch deck for a cross-platform ad-optimization concept aimed at **reducing ad budget wastage by 35% in SMBs**. Covered business strategy, product roadmap, competitor analysis, and KPIs informed by sales projections."
   },
   {
     keys: ['whatup', 'life foundation', 'wellbeing', 'mental', 'flutter app', 'wlf'],
-    answer: "**Whatup' Life Foundation App** — a Flutter mental-wellbeing mobile app with blogs, session scheduling, one-to-one peer support, and personalised push notifications. Code: github.com/aaryaa07/wlf-app"
+    answer: "**Whatup' Life Foundation App** - a Flutter mental-wellbeing mobile app with blogs, session scheduling, one-to-one peer support, and personalised push notifications. Code: github.com/aaryaa07/wlf-app"
   },
   {
     keys: ['skill', 'skills', 'tech', 'stack', 'technologies', 'languages', 'frameworks'],
@@ -58,7 +58,7 @@ const KB = [
   },
   {
     keys: ['react', 'reactjs', 'frontend', 'front-end'],
-    answer: "**ReactJS** is one of Aryaman's strongest stacks — 3 years of production work at Citrix on the Stylebooks app (led the migration from vanilla JS, 100% dev adoption in 3 months), built Cytoscape.js graph views, GitLab-sync UI components, and accordion-based diff reports. He also used React for **CAMA** (AI consulting platform)."
+    answer: "**ReactJS** is one of Aryaman's strongest stacks - 3 years of production work at Citrix on the Stylebooks app (led the migration from vanilla JS, 100% dev adoption in 3 months), built Cytoscape.js graph views, GitLab-sync UI components, and accordion-based diff reports. He also used React for **CAMA** (AI consulting platform)."
   },
   {
     keys: ['python', 'flask', 'django', 'data science'],
@@ -66,23 +66,23 @@ const KB = [
   },
   {
     keys: ['testing', 'test', 'qa', 'cypress', 'jest', 'automation'],
-    answer: "Heavy on test automation — **150+ Cypress E2E test scenarios** wired into Jenkins for daily regression at Citrix (cut manual test effort 25%/sprint). Earlier introduced **Jest** unit tests during the Stylebooks UI migration, leading to a **40% reduction in production regression defects**."
+    answer: "Heavy on test automation - **150+ Cypress E2E test scenarios** wired into Jenkins for daily regression at Citrix (cut manual test effort 25%/sprint). Earlier introduced **Jest** unit tests during the Stylebooks UI migration, leading to a **40% reduction in production regression defects**."
   },
   {
     keys: ['certification', 'cert', 'certifications', 'certificate', 'certificates', 'credential', 'credentials'],
-    answer: "Highlighted credentials: **Google AI Professional Certificate** (Coursera, 7-course specialization, May 2026), **Alteryx Designer Cloud — Core** (Dec 2025), **Business Analytics & Data Mining Graduate Certificate** (UT Dallas, in progress), and **Beta Gamma Sigma Member** (top business honor society — top 10% undergrad / top 20% grad of AACSB-accredited business schools)."
+    answer: "Highlighted credentials: **Google AI Professional Certificate** (Coursera, 7-course specialization, May 2026), **Alteryx Designer Cloud - Core** (Dec 2025), **Business Analytics & Data Mining Graduate Certificate** (UT Dallas, in progress), and **Beta Gamma Sigma Member** (top business honor society - top 10% undergrad / top 20% grad of AACSB-accredited business schools)."
   },
   {
     keys: ['google ai', 'google certificate', 'google'],
-    answer: "**Google AI Professional Certificate** (Coursera, May 2026) — a 7-course specialization: AI Fundamentals, Brainstorming & Planning, Research & Insights, Writing & Communicating, Content Creation, Data Analysis, and App Building. Aryaman built 20+ AI artifacts plus a custom vibe-coded AI solution as part of it."
+    answer: "**Google AI Professional Certificate** (Coursera, May 2026) - a 7-course specialization: AI Fundamentals, Brainstorming & Planning, Research & Insights, Writing & Communicating, Content Creation, Data Analysis, and App Building. Aryaman built 20+ AI artifacts plus a custom vibe-coded AI solution as part of it."
   },
   {
     keys: ['alteryx', 'designer cloud'],
-    answer: "**Alteryx Designer Cloud — Core** (Dec 2025). Foundational mastery of Alteryx Designer Cloud: workflow design, data prep & blending, cloud analytics, and automation. Verifiable badge on Credly."
+    answer: "**Alteryx Designer Cloud - Core** (Dec 2025). Foundational mastery of Alteryx Designer Cloud: workflow design, data prep & blending, cloud analytics, and automation. Verifiable badge on Credly."
   },
   {
     keys: ['bgs', 'beta gamma sigma', 'honor society', 'aacsb'],
-    answer: "**Beta Gamma Sigma (BGS)** — the international business honor society. BGS recognizes the **top 10% of undergraduate students, top 20% of graduate students, and all doctoral candidates** from business schools accredited by The Association to Advance Collegiate Schools of Business (AACSB)."
+    answer: "**Beta Gamma Sigma (BGS)** - the international business honor society. BGS recognizes the **top 10% of undergraduate students, top 20% of graduate students, and all doctoral candidates** from business schools accredited by The Association to Advance Collegiate Schools of Business (AACSB)."
   },
   {
     keys: ['visa', 'sponsorship', 'h1b', 'opt', 'cpt', 'work auth', 'authorization', 'eligible', 'eligibility'],
@@ -102,11 +102,11 @@ const KB = [
   },
   {
     keys: ['github', 'repo', 'repos', 'repository', 'code'],
-    answer: "**GitHub:** https://github.com/aaryaa07 — Touchline AI, the portfolio site, vocabulary apps, and a few experiments."
+    answer: "**GitHub:** https://github.com/aaryaa07 - Touchline AI, the portfolio site, vocabulary apps, and a few experiments."
   },
   {
     keys: ['hire', 'hiring', 'available', 'opportunity', 'opportunities', 'role', 'open to', 'looking', 'job search'],
-    answer: "Yes — **open to opportunities** (full-time SWE / data / product-engineering roles). Eligible to work in the U.S. for **36 months without sponsorship**. The fastest path is an email: **as.aryamansingh@gmail.com**."
+    answer: "Yes - **open to opportunities** (full-time SWE / data / product-engineering roles). Eligible to work in the U.S. for **36 months without sponsorship**. The fastest path is an email: **as.aryamansingh@gmail.com**."
   },
   {
     keys: ['interest', 'hobby', 'hobbies', 'fun', 'personal', 'guitar', 'music', 'songwriting'],
@@ -118,7 +118,7 @@ const KB = [
   },
   {
     keys: ['resume', 'cv', 'download'],
-    answer: "Aryaman's academic resume is in this site — feel free to email him at **as.aryamansingh@gmail.com** for the latest copy."
+    answer: "Aryaman's academic resume is in this site - feel free to email him at **as.aryamansingh@gmail.com** for the latest copy."
   },
   {
     keys: ['ai', 'artificial intelligence', 'ml', 'machine learning', 'genai', 'llm', 'agent', 'agents'],
@@ -126,7 +126,7 @@ const KB = [
   },
   {
     keys: ['salary', 'compensation', 'pay'],
-    answer: "Compensation is best discussed directly — drop a note to **as.aryamansingh@gmail.com** with the role context."
+    answer: "Compensation is best discussed directly - drop a note to **as.aryamansingh@gmail.com** with the role context."
   }
 ];
 
@@ -138,7 +138,7 @@ const SUGGESTIONS = [
   "How to contact you?",
 ];
 
-const FALLBACK = "I don't have a great answer for that — but Aryaman would, and you can reach him at **as.aryamansingh@gmail.com**. Try asking about his experience, projects, certifications, or visa status.";
+const FALLBACK = "I don't have a great answer for that - but Aryaman would, and you can reach him at **as.aryamansingh@gmail.com**. Try asking about his experience, projects, certifications, or visa status.";
 
 /* ── Intent matcher ── */
 function findAnswer(text) {
@@ -231,7 +231,7 @@ function openPanel() {
   if (!opened) {
     opened = true;
     setTimeout(() => {
-      pushMsg('bot', renderInline("Hey! 👋 I'm a quick-answer bot for Aryaman's portfolio. Ask me anything — experience, projects, certs, visa, contact info."));
+      pushMsg('bot', renderInline("Hey! 👋 I'm a quick-answer bot for Aryaman's portfolio. Ask me anything - experience, projects, certs, visa, contact info."));
       renderSuggestions();
     }, 250);
   }

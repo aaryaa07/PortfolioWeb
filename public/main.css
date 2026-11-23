@@ -1409,7 +1409,7 @@ body.mobile-nav-open {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;  /* tags sit right under the heading in every card */
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -2413,347 +2413,6 @@ body.mobile-nav-open {
   }
 }
 
-/* ═══════════════════════════════════════════════════
-   EXPERIENCE TIMELINE
-═══════════════════════════════════════════════════ */
-.exp-caption {
-  margin: -18px 0 16px;
-  font-size: 14px;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
-}
-
-.timeline-label {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  z-index: 6;
-  padding: 10px 16px;
-  background: rgba(12, 17, 31, 0.80);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
-  pointer-events: none;
-}
-
-.timeline-label .eyebrow {
-  margin: 0;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-[data-theme="light"] .timeline-label {
-  background: rgba(255, 255, 255, 0.88);
-  border-color: rgba(156, 116, 87, 0.18);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .timeline-label .eyebrow {
-  color: var(--accent);
-}
-
-.exp-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(20px, 2.4vw, 32px);
-  align-items: start;
-}
-
-.exp-grid > .timeline {
-  max-height: calc(100vh - 200px);
-  overflow: visible;
-  min-width: 0;
-  position: relative;
-  margin: 0;
-  width: 100%;
-}
-
-.timeline {
-  position: relative;
-  padding: 0;
-  min-height: 100%;
-  height: 100%;
-  width: 100%;
-  --tl-road: #2b2620;          /* warm asphalt */
-  --tl-road-edge: #3a332a;
-  --tl-slot: 180px;            /* vertical space per milestone */
-  --exp-orange: #f97316;
-  --exp-orange-lt: #fb923c;
-  border-radius: 22px;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* Scene sky — night in dark, soft day in light */
-[data-theme="dark"] .timeline {
-  background:
-    radial-gradient(60% 34% at 82% 12%, rgba(253, 246, 227, 0.10), transparent 62%),  /* moon halo */
-    radial-gradient(135% 42% at 50% 100%, rgba(249, 115, 22, 0.22), transparent 66%),  /* city glow */
-    linear-gradient(180deg, #06060f 0%, #090812 40%, #130d0d 76%, #1d130c 100%);
-}
-[data-theme="light"] .timeline {
-  --tl-road: #b9a99a;
-  --tl-road-edge: #ab9a8a;
-  background:
-    radial-gradient(120% 55% at 50% 0%, rgba(224, 122, 79, 0.18), transparent 60%),
-    linear-gradient(180deg, #ffe9d2 0%, #fdf0e2 55%, #fbeada 100%);
-}
-
-/* celestial body — moon at night, sun by day */
-.timeline::before { content: ''; position: absolute; z-index: 0; pointer-events: none; border-radius: 50%; }
-[data-theme="dark"] .timeline::before {
-  top: 30px; right: 56px; width: 56px; height: 56px;
-  background: radial-gradient(circle at 38% 36%, #fdf6e3, #e6d9ba 70%, #d6c69e);
-  box-shadow: 0 0 48px rgba(253, 246, 227, 0.42), inset -9px -7px 0 rgba(0, 0, 0, 0.07);
-}
-[data-theme="light"] .timeline::before {
-  top: 24px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(249, 140, 40, 0.45), rgba(249, 115, 22, 0) 70%);
-}
-
-/* stars (dark only) */
-.tl-stars { position: absolute; inset: 0 0 auto 0; height: 58%; z-index: 0; pointer-events: none; display: none; }
-[data-theme="dark"] .tl-stars {
-  display: block;
-  background-image:
-    radial-gradient(1.3px 1.3px at 12% 22%, #fff, transparent),
-    radial-gradient(1px 1px at 24% 40%, #fff, transparent),
-    radial-gradient(1.4px 1.4px at 41% 14%, #fff, transparent),
-    radial-gradient(1px 1px at 57% 32%, #fff, transparent),
-    radial-gradient(1.2px 1.2px at 69% 18%, #fff, transparent),
-    radial-gradient(1px 1px at 88% 30%, #fff, transparent),
-    radial-gradient(1.3px 1.3px at 34% 9%,  #fff, transparent),
-    radial-gradient(1px 1px at 78% 44%, #fff, transparent),
-    radial-gradient(1.1px 1.1px at 6% 48%, #fff, transparent),
-    radial-gradient(1px 1px at 50% 50%, #fff, transparent);
-  opacity: 0.55;
-  animation: twinkle 5s ease-in-out infinite;
-}
-@keyframes twinkle { 0%,100% { opacity: 0.4; } 50% { opacity: 0.7; } }
-
-/* distant city skyline at the horizon */
-.tl-skyline {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 220px;
-  display: flex; align-items: flex-end; gap: 2px;
-  padding: 0 4%; z-index: 0; pointer-events: none;
-  opacity: 0.9;
-}
-.tl-skyline .bld {
-  width: var(--w, 42px); height: var(--h, 140px); flex: 1 1 auto; max-width: var(--w, 42px);
-  background: var(--sky-bld, #0d0b14);
-  border-radius: 2px 2px 0 0;
-  position: relative;
-}
-.tl-skyline .bld::before {
-  content: ''; position: absolute; inset: 6px 5px;
-  background-image: radial-gradient(var(--sky-win, rgba(249,170,80,0.55)) 36%, transparent 40%);
-  background-size: 11px 15px;
-}
-[data-theme="light"] .tl-skyline { display: none; }   /* skyline only at night */
-
-/* ground / horizon strip */
-.tl-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 100px; z-index: 0; pointer-events: none; }
-[data-theme="dark"]  .tl-ground { background: linear-gradient(180deg, transparent, rgba(22, 30, 16, 0.65)); }
-[data-theme="light"] .tl-ground { background: linear-gradient(180deg, transparent, rgba(120, 160, 90, 0.20)); }
-
-/* ── Scenery (trees + buildings) ── */
-.tl-scenery { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.sc { position: absolute; }
-
-.sc-tree { width: calc(46px * var(--s, 1)); height: calc(72px * var(--s, 1)); }
-.sc-tree::before {
-  content: ''; position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: calc(22px * var(--s, 1)) solid transparent;
-  border-right: calc(22px * var(--s, 1)) solid transparent;
-  border-bottom: calc(58px * var(--s, 1)) solid var(--tree);
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3));
-}
-.sc-tree::after {
-  content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-  width: 6px; height: 16px; background: var(--trunk); border-radius: 1px;
-}
-[data-theme="dark"]  .sc-tree { --tree: #1d3326; --trunk: #3a2a1c; opacity: 0.9; }
-[data-theme="light"] .sc-tree { --tree: #9cc08a; --trunk: #9a8466; opacity: 0.8; }
-
-.sc-building {
-  width: var(--w, 52px); height: var(--h, 100px);
-  border-radius: 3px 3px 0 0;
-  background: var(--bldg);
-}
-.sc-building::before {
-  content: ''; position: absolute; inset: 9px 8px;
-  background-image: radial-gradient(var(--win) 38%, transparent 42%);
-  background-size: 13px 17px;
-}
-[data-theme="dark"]  .sc-building { --bldg: #20180f; --win: rgba(255, 178, 84, 0.9); opacity: 0.95; }
-[data-theme="light"] .sc-building { --bldg: #b7c2d6; --win: rgba(249, 150, 40, 0.55); opacity: 0.7; }
-
-/* roadside streetlights (night only) */
-.sc-light { width: 6px; height: 122px; }
-.sc-light::before {
-  content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
-  width: 5px; height: 122px;
-  background: linear-gradient(90deg, #20202a, #4c4c58, #20202a);
-  border-radius: 2px;
-}
-.sc-light::after {
-  content: ''; position: absolute; top: 4px; width: 24px; height: 5px;
-  background: #34343e; border-radius: 3px;
-}
-.sc-light.lt-r::after {
-  left: calc(50% - 2px);
-  box-shadow: 22px 2px 0 0 #ffd27a, 24px 4px 22px 5px rgba(255, 170, 70, 0.5);
-}
-.sc-light.lt-l::after {
-  right: calc(50% - 2px);
-  box-shadow: -22px 2px 0 0 #ffd27a, -24px 4px 22px 5px rgba(255, 170, 70, 0.5);
-}
-[data-theme="light"] .sc-light { display: none; }
-
-/* ── The winding road ── */
-.tl-road { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
-.tl-road-edge { fill: none; stroke: var(--tl-road-edge); stroke-width: 30; stroke-linecap: round; stroke-linejoin: round; }
-.tl-road-base { fill: none; stroke: var(--tl-road);      stroke-width: 26; stroke-linecap: round; stroke-linejoin: round; }
-.tl-road-dash { fill: none; stroke: rgba(255, 236, 180, 0.7); stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 1 16; }
-
-/* ── Milestone slots (fixed → road never shifts) ── */
-.tl-entry { position: relative; height: var(--tl-slot); z-index: 2; }
-.tl-entry:first-of-type { padding-top: 56px; }
-.tl-entry:last-of-type  { padding-bottom: 56px; }
-
-/* ── Road sign on a post ── */
-.tl-sign {
-  position: absolute;
-  bottom: 0;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center;
-  border: 0; background: transparent; padding: 0; cursor: pointer;
-  z-index: 4;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  min-width: 44px;
-  min-height: 44px;
-}
-.tl-sign > * {
-  pointer-events: none;
-}
-.tl-left  .tl-sign { left: 36%; }
-.tl-right .tl-sign { left: 64%; }
-.tl-sign:hover,
-.tl-sign:active,
-.tl-sign:focus-visible { z-index: 5; }
-
-.tl-sign:hover .tl-board,
-.tl-sign:active .tl-board,
-.tl-sign:focus-visible .tl-board {
-  filter: brightness(1.06);
-  box-shadow: 0 16px 34px rgba(249, 115, 22, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-.tl-board {
-  position: relative;
-  background: var(--exp-orange);
-  color: #1a1206;
-  border: 3px solid #fff3e0;
-  border-radius: 9px;
-  padding: 8px 14px;
-  min-width: 140px; max-width: 205px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transform-origin: 50% 100%;
-  animation: signSway 4.5s ease-in-out infinite;
-  transition: box-shadow 0.25s ease, filter 0.2s ease;
-}
-.tl-entry:nth-of-type(odd) .tl-board { animation-delay: -1.6s; }
-.tl-sign.is-tapped .tl-board { animation: signTap 0.55s ease; }
-
-.tl-board-co { display: block; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 14.5px; line-height: 1.15; letter-spacing: -0.01em; }
-.tl-board-yr {
-  display: block; white-space: nowrap;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
-  margin-top: 4px; padding-top: 4px;
-  border-top: 1px solid rgba(0, 0, 0, 0.22);
-  color: #3a2206;
-}
-
-/* sign bolts */
-.tl-board::before, .tl-board::after {
-  content: ''; position: absolute; top: 6px; width: 4px; height: 4px; border-radius: 50%;
-  background: rgba(0, 0, 0, 0.26);
-}
-.tl-board::before { left: 7px; }
-.tl-board::after  { right: 7px; }
-
-.tl-post {
-  width: 8px; height: 56px;
-  background: linear-gradient(90deg, #3f4753 0%, #aab4c2 45%, #6b7480 60%, #3f4753 100%);
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-.tl-node {
-  width: 32px; height: 9px; border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
-  filter: blur(2px);
-  margin-top: -3px;
-}
-
-@keyframes signSway {
-  0%, 100% { transform: rotate(-1.3deg); }
-  50%      { transform: rotate(1.3deg); }
-}
-@keyframes signTap {
-  0%   { transform: rotate(0); }
-  20%  { transform: rotate(5deg) translateY(-2px); }
-  45%  { transform: rotate(-4deg); }
-  70%  { transform: rotate(2.5deg); }
-  100% { transform: rotate(0); }
-}
-
-/* ── Pop-up modal (role + work) ── */
-.exp-modal { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 20px; }
-.exp-modal[hidden] { display: none; }
-.exp-modal-backdrop {
-  position: absolute; inset: 0;
-  background: rgba(8, 6, 4, 0.62);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-  opacity: 0; transition: opacity 0.25s ease;
-}
-.exp-modal.show .exp-modal-backdrop { opacity: 1; }
-.exp-modal-card {
-  position: relative; z-index: 1;
-  width: min(440px, 94vw);
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-top: 4px solid var(--exp-orange);
-  border-radius: 16px;
-  padding: 26px 26px 24px;
-  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.6);
-  transform: translateY(14px) scale(0.92); opacity: 0;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
-}
-.exp-modal.show .exp-modal-card { transform: none; opacity: 1; }
-.exp-modal-close {
-  position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
-  border: 0; border-radius: 8px; background: transparent; color: var(--text-muted);
-  font-size: 22px; line-height: 1; cursor: pointer; transition: all 0.2s ease;
-}
-.exp-modal-close:hover { background: rgba(249, 115, 22, 0.12); color: var(--exp-orange); }
-.exp-modal-badge {
-  width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--exp-orange), #ea580c); color: #fff; font-size: 20px;
-  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4); margin-bottom: 12px;
-}
-.exp-modal-period { font-size: 12.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--exp-orange-lt); }
-.exp-modal-co { font-family: 'Poppins', sans-serif; font-size: 25px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin: 3px 0 6px; }
-.exp-modal-role { font-size: 14px; font-weight: 600; color: var(--text-2); margin-bottom: 12px; }
-.exp-modal-summary { font-size: 15px; line-height: 1.62; color: var(--text-2); margin-bottom: 16px; text-wrap: pretty; }
-.exp-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.exp-modal-tags .ptag { color: var(--exp-orange-lt); background: rgba(249, 115, 22, 0.12); }
-
 /* ── UTD in-progress coursework ── */
 .utd-section-label {
   font-size: 13px;
@@ -3510,4 +3169,190 @@ body::before {
   .stage.about-active .panel:not(#about) {
     display: none !important;
   }
+}
+
+/* ═══════════════════════════════════════════════════
+   EXPERIENCE + PROJECTS — "Workbench" cards
+   (ported from design C; uses the existing theme tokens)
+═══════════════════════════════════════════════════ */
+:root, [data-theme="dark"] {
+  --wb-link: #fb923c;
+  --wb-on-accent: #0b0907;
+  --wb-pale: #fdba74;
+  --wb-spot: rgba(249, 115, 22, 0.12);
+}
+[data-theme="light"] {
+  --wb-link: #3a2a20;          /* terracotta fails AA on peach at small sizes */
+  --wb-on-accent: #0b0907;
+  --wb-pale: #f0a878;
+  --wb-spot: rgba(207, 91, 52, 0.11);
+}
+
+/* Cards + pointer spotlight */
+.wb-card {
+  position: relative; isolation: isolate;
+  background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+  transition: border-color .25s ease, background-color .25s ease, translate .3s cubic-bezier(.2,.7,.2,1);
+}
+.wb-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--wb-spot), transparent 60%);
+  opacity: 0; transition: opacity .3s ease;
+}
+.wb-card:hover { border-color: var(--border-strong); }
+.wb-card:hover::before { opacity: 1; }
+
+.wb-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.wb-chips li { font-size: 13px; font-weight: 600; line-height: 1.4; padding: 4px 10px; border-radius: 999px; background: var(--accent-dim); color: var(--wb-link); }
+
+/* ── Experience route ── */
+.wb-route { position: relative; --p: 0; margin-top: 8px; }
+.wb-route-track { position: absolute; left: 19px; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--border-strong); overflow: hidden; }
+.wb-route-fill { position: absolute; inset: 0; background: linear-gradient(180deg, var(--wb-pale), var(--accent)); transform-origin: top; transform: scaleY(var(--p)); transition: transform .15s linear; }
+.wb-stops { list-style: none; display: grid; gap: 18px; }
+.wb-stop { position: relative; padding-left: 64px; }
+.wb-pin { position: absolute; left: 8px; top: 28px; width: 25px; height: 25px; border-radius: 50%; background: var(--bg); border: 3px solid var(--border-strong); transition: border-color .3s, background-color .3s, box-shadow .3s; }
+.wb-stop.reached .wb-pin { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 6px var(--accent-dim); }
+.wb-stop-card { padding: 22px 26px; }
+.wb-when { font-size: 14px; font-weight: 600; color: var(--text-2); }
+.wb-co { font-family: 'Poppins', sans-serif; font-size: clamp(22px, 1.2vw + 14px, 28px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-top: 2px; color: var(--text); }
+.wb-role { color: var(--wb-link); font-weight: 600; font-size: 15px; margin-top: 2px; }
+.wb-sum { margin-top: 12px; font-size: 17px; line-height: 1.6; color: var(--text); max-width: 72ch; }
+.wb-stop .wb-chips { margin-top: 14px; }
+
+/* ── Projects ── */
+.wb-projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.wb-proj { padding: 24px; display: flex; flex-direction: column; gap: 6px; }
+.wb-proj:hover { translate: 0 -4px; background: var(--card-hover); }
+.wb-proj-feature { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 40px; align-content: start; }
+.wb-proj-feature .wb-proj-top { grid-column: 1 / -1; }
+.wb-proj-feature .wb-proj-name, .wb-proj-feature .wb-proj-sub { grid-column: 1; }
+.wb-proj-feature .wb-proj-name { font-size: clamp(30px, 2vw + 16px, 46px); }
+.wb-proj-feature .wb-proj-desc { grid-column: 2; grid-row: 2 / span 2; margin: 0; font-size: 19px; color: var(--text); }
+.wb-proj-feature .wb-chips { grid-column: 2; margin-top: 14px; }
+.wb-proj-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.wb-proj-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-dim); color: var(--wb-link); font-size: 20px; }
+.wb-proj-feature .wb-proj-icon { width: 60px; height: 60px; font-size: 28px; border-radius: 16px; }
+.wb-proj-kind { font-size: 13px; font-weight: 600; color: var(--text-2); padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; white-space: nowrap; }
+.wb-proj-links { display: flex; gap: 6px; }
+.wb-proj-links a { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 13px; border-radius: 10px; font-size: 14px; font-weight: 700; border: 1px solid var(--border-strong); color: var(--text); }
+.wb-proj-links a:hover { border-color: var(--accent); }
+.wb-proj-links .wb-live { background: var(--accent); color: var(--wb-on-accent); border-color: var(--accent); }
+.wb-proj-links .wb-live:hover { background: var(--accent-lt); }
+.wb-proj-name { font-family: 'Poppins', sans-serif; font-size: 23px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--text); }
+.wb-proj-sub { font-size: 14px; font-weight: 600; color: var(--wb-link); }
+.wb-proj-desc { margin: 8px 0 14px; font-size: 16px; line-height: 1.6; color: var(--text-2); }
+.wb-proj .wb-chips { margin-top: auto; }
+
+.wb-card a:focus-visible, .wb-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Cards stagger in each time the tab opens */
+@media (prefers-reduced-motion: no-preference) {
+  .panel.active .wb-in { animation: wbRise .5s cubic-bezier(.2,.7,.2,1) both; }
+  .panel.active .wb-in:nth-child(2) { animation-delay: .06s; }
+  .panel.active .wb-in:nth-child(3) { animation-delay: .12s; }
+  .panel.active .wb-in:nth-child(4) { animation-delay: .18s; }
+  @keyframes wbRise { from { opacity: 0; transform: translateY(14px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wb-route-fill { transform: scaleY(1); }
+  .wb-card, .wb-card::before, .wb-pin { transition: none; }
+}
+
+@media (max-width: 1100px) {
+  .wb-projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .wb-proj-feature { display: flex; }
+  .wb-proj-feature .wb-proj-desc { margin: 8px 0 14px; font-size: 17px; }
+}
+@media (max-width: 700px) {
+  .wb-projects { grid-template-columns: minmax(0, 1fr); }
+  .wb-proj-feature { display: flex; }
+  .wb-proj-feature .wb-proj-desc { margin: 8px 0 14px; font-size: 16px; color: var(--text-2); }
+  .wb-stop { padding-left: 40px; }
+  .wb-route-track { left: 11px; }
+  .wb-pin { left: 0; }
+  .wb-stop-card { padding: 18px; }
+  .wb-sum { font-size: 16px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   PHONE FIT — the top bar's content used to force the
+   HUD grid wider than the screen (≈478px at 375px), so
+   every panel was clipped on the right.
+═══════════════════════════════════════════════════ */
+.layout.hud { grid-template-columns: minmax(0, 1fr); }
+.mobile-nav-social { display: none; }
+@media (max-width: 520px) {
+  .topbar { gap: 10px; }
+  .topbar-brand { font-size: 16px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .topbar .social { display: none; }
+  .mobile-nav-social { display: flex; gap: 10px; padding: 14px 6px 4px; margin-top: 8px; border-top: 1px solid var(--border); }
+  .mobile-nav-social .social-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; border: 1px solid var(--border-strong); color: var(--text); font-size: 18px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   ICONS — official tool icons on skill tags, company
+   logos on experience cards. Logos sit on a white tile
+   (same treatment as --logo-tile-bg on the cert cards)
+   so dark marks like Express or Citrix stay visible.
+═══════════════════════════════════════════════════ */
+.skill-tags .tag { display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px 7px 8px; }
+.tag-ico {
+  width: 24px; height: 24px; flex: none;
+  padding: 3px; border-radius: 6px;
+  background: var(--logo-tile-bg);
+  object-fit: contain;
+}
+
+.wb-stop-head { display: flex; align-items: center; gap: 16px; }
+.wb-logo {
+  flex: none; width: 56px; height: 56px; border-radius: 14px;
+  display: grid; place-items: center; overflow: hidden;
+  background: var(--logo-tile-bg); box-shadow: var(--logo-tile-shadow);
+}
+.wb-logo img { width: 62%; height: 62%; object-fit: contain; }
+.wb-logo-fill img { width: 100%; height: 100%; }
+.wb-logo-wide { width: auto; padding: 0 14px; background: #0b0907; border: 1px solid var(--border); }
+.wb-logo-wide img { width: auto; height: 22px; }
+.wb-stop-head .wb-co { margin-top: 0; }
+.wb-stop-head + .wb-role { margin-top: 10px; }
+
+@media (max-width: 700px) {
+  .wb-logo { width: 44px; height: 44px; border-radius: 12px; }
+  .wb-logo-wide { width: auto; padding: 0 10px; }
+  .wb-logo-wide img { height: 16px; }
+  .wb-stop-head { gap: 10px; flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Honors row: Beta Gamma Sigma + Phi Kappa Phi side by side ── */
+.dock-badge-row-honors .dock-badge-wide { flex: none; width: 74px; }
+.dock-badge-honor { background: #ffffff; border-radius: 50%; padding: 3px; }
+/* Phone profile pop-up: keep the honors row as wide as the row below it */
+.mobile-id-card .dock-badge-row-honors .dock-badge-wide { width: 58px; }
+.mobile-id-card .dock-badge-honor { width: 46px; height: 46px; }
+
+/* ── Phone profile pop-up: close button fully inside the card ──
+   It used to sit at top/right -16px, half outside a card that clips
+   its overflow, so it was cut off and mostly covered by the backdrop. */
+@media (max-width: 900px) {
+  .mobile-id-card { padding-top: 60px; }
+  .mobile-id-close {
+    top: 10px; right: 10px;
+    width: 44px; height: 44px;             /* minimum comfortable touch target */
+    font-size: 26px; line-height: 1;
+    border: 1px solid var(--border-strong);
+    background: var(--card);
+    color: var(--text);
+  }
+  .mobile-id-close:hover { border-color: var(--accent); }
+  .mobile-id-close:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+    background: var(--accent-dim); border-color: var(--accent);
+  }
+}
+/* Light theme's --surface is 86% opaque, so page text showed through the card */
+@media (max-width: 900px) {
+  [data-theme="light"] .mobile-id-card { background: var(--card); }
 }
